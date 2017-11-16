@@ -37,29 +37,22 @@ public class InventoryManager{
 	 *
 	 * @param purchasedItem
 	 */
+	public void setPurchasedItem (StockItem purchasedItem) {
+		//Set the purchased Item
+		this.purchasedItem = purchasedItem;
+	}
+	
+
+	
+	/**
+	 *
+	 * @param purchasedItem
+	 */
 	public void addItem (StockItem purchasedItem) {
 		//ArrayList<StockItem> items = new ArrayList<>();
 		
 		// Add current message to beginning of archive.
 		this._col.add(purchasedItem);
-	}
-	
-	/**
-	 *
-	 * @param the_item
-	 * @return
-	 */
-	public String find (StockItem the_item) {
-		
-		//Loop until the length of the array
-		for(StockItem item : _col)
-		{
-			if (the_item.get_brandName().equalsIgnoreCase( item.get_brandName()) && the_item.know_quantity() > 0)
-			{
-					return "Yes.\n";
-			}
-		}
-		return "No we do not.\n";
 	}
 	
 	/**
@@ -75,20 +68,41 @@ public class InventoryManager{
 	
 	/**
 	 *
+	 * @param the_item
+	 * @return
+	 */
+	public String find (StockItem the_item) {
+		
+		//Loop until the length of the array
+		for(StockItem item : _col)
+		{
+			if (the_item.get_brandName().equalsIgnoreCase( item.get_brandName()) && the_item.known_quantity() > 0)
+			{
+					return "Yes.\n";
+			}
+		}
+		return "No we do not.\n";
+	}
+	
+	public String getItembyID (String itemID) {
+		for(StockItem item : _col)
+		{
+			System.out.println(item.toString());
+			if (itemID.equalsIgnoreCase(item.get_id()))
+			{
+				return item.toString() + " Found.";
+			}
+		}
+		return "Item not found";
+	}
+	
+	/**
+	 *
 	 * @param the_collection
 	 */
 	public void displayItem (ArrayList<StockItem> the_collection) {
 		//Display All Stock Items
 		System.out.println(the_collection.toString());
-	}
-	
-	/**
-	 *
-	 * @param purchasedItem
-	 */
-	public void setPurchasedItem (StockItem purchasedItem) {
-		//Set the purchased Item
-		this.purchasedItem = purchasedItem;
 	}
 	
 	/**
@@ -150,7 +164,7 @@ public class InventoryManager{
 		System.out.println("Do you have M&Ms? " + this.find(mmsLot));
 		System.out.println("Do you have lays? " + this.find(laysLot));
 		System.out.println("Do you have Coke? " + this.find(cokeLot));
-		
+		System.out.println("Do you have CB001? " + this.getItembyID( "001"));
 	}
 	
 	@Override

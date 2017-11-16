@@ -15,7 +15,7 @@ public class StockItem {
 	private Double _price;
 	private int _quantity;
 	
-	private String get_id() {
+	public String get_id() {
 		return _id;
 	}
 	
@@ -65,7 +65,7 @@ public class StockItem {
 		return _quantity;
 	}
 	
-	public int	know_quantity() {
+	public int	known_quantity() {
 		return _quantity;
 	}
 	
