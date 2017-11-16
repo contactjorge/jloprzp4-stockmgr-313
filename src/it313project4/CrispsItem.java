@@ -48,9 +48,9 @@ public class CrispsItem extends StockItem {
 	 * @param the_id
 	 * @return
 	 */
-	private String new_id(String the_id) {
-		the_id ="CP" + the_id;
-		return the_id;
+	private String new_id() {
+		this._newID = "CP";
+		return _newID;
 	}
 	
 	/**
@@ -63,10 +63,10 @@ public class CrispsItem extends StockItem {
 	 * @param _baked
 	 * @param quantity
 	 */
-	public CrispsItem(String _id, String _brandName, String _description, Double _price, int bagOunce, boolean
-			_baked, int quantity) {
-		super(_brandName, _description, _price, quantity);
-		this._newID = new_id(_id);
+	public CrispsItem(String _brandName, String _description, Double _price, int bagOunce, boolean
+			_baked) {
+		super(_brandName, _description, _price);
+		this._newID = new_id();
 		this.bagOunce = bagOunce;
 		this._baked = _baked;
 	}
@@ -74,7 +74,7 @@ public class CrispsItem extends StockItem {
 	@Override
 	public String toString () {
 		return "CrispsItem: " +
-				"ID = " + _newID +
+				"ID = " + _newID + Integer.toString(get_id()) +
 				", " + super.toString() +
 				"\n" + "Bag Size = " + bagOunce + "Ounces" +
 				", Baked of Fried? " + _baked + "\n";

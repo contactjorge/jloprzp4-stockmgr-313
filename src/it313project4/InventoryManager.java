@@ -42,15 +42,11 @@ public class InventoryManager{
 		this.purchasedItem = purchasedItem;
 	}
 	
-
-	
 	/**
 	 *
 	 * @param purchasedItem
 	 */
 	public void addItem (StockItem purchasedItem) {
-		//ArrayList<StockItem> items = new ArrayList<>();
-		
 		// Add current message to beginning of archive.
 		this._col.add(purchasedItem);
 	}
@@ -88,7 +84,7 @@ public class InventoryManager{
 		for(StockItem item : _col)
 		{
 			System.out.println(item.toString());
-			if (itemID.equalsIgnoreCase(item.get_id()))
+			if (itemID.equals(item.get_id()))
 			{
 				return item.toString() + " Found.";
 			}
@@ -98,20 +94,11 @@ public class InventoryManager{
 	
 	/**
 	 *
-	 * @param the_collection
-	 */
-	public void displayItem (ArrayList<StockItem> the_collection) {
-		//Display All Stock Items
-		System.out.println(the_collection.toString());
-	}
-	
-	/**
-	 *
 	 * @return
 	 */
 	public StockItem getPurchasedItem () {
-		//Get the purchased Item
-		return purchasedItem;
+		
+		return purchasedItem;//Return the purchased Item
 	}
 	
 	/**
@@ -119,52 +106,31 @@ public class InventoryManager{
 	 * @param the_collection
 	 */
 	public void removePurchasedItem (ArrayList<StockItem> the_collection) {
-		this._col = the_collection;
-		//return the_collection;
+		
+		this._col = the_collection; //return the_collection;
+		
 	}
 	
 	public InventoryManager () {
+		CandyBarItem goodbar = new CandyBarItem("Mr. Goodbar", "Hershey's Mr. Goodbar", 0.45, 12, true);
+		CrispsItem doritos = new CrispsItem("Doritos", "Frito Lay Cheesey Corn Crisps", 0.80, 24, false);
 		
-		CandyBarItem goodbarLot = new CandyBarItem("001", "Mr. Goodbar", "Hershey's Mr. Goodbar", 0.45, 12, true, 32);
-		CandyBarItem mmsLot = new CandyBarItem("002", "Peanut M&Ms", "Mars M&M's Peanut", 0.45, 12, true, 32);
-		CrispsItem doritosLot = new CrispsItem("001", "Doritos", "Frito Lay Cheesey Corn Crisps", 0.80, 24, false, 16);
-		CrispsItem laysLot = new CrispsItem("002", "Lay's", "Frito Lay Flagship product", 0.80, 24, false, 12);
-		SodaWaterItem cokeLot = new SodaWaterItem("001", "Coke", "Flagship coca-cola product", 8, 0.80, true,
-				true, 36);
-		SodaWaterItem cokeDietLot = new SodaWaterItem("002", "Diet Coke", "Flagship diet coca-cola product", 8, 0.80,
-				false, true, 36);
-		SodaWaterItem cokeDietFreeLot = new SodaWaterItem("003", "Sprite", "Lemon lime coca-cola product", 8, 0.80,
-				false, false, 36);
-		SodaWaterItem spriteLot = new SodaWaterItem("004", "Sprite", "Lemon lime coca-cola product", 8, 0.80, false,
-				true, 36);
-		SodaWaterItem spriteDietLot = new SodaWaterItem("005", "Diet Sprite", "Lemon lime coca-cola product", 8, 0.80,
-				false, false, 36);
+		System.out.println("Instantiate 1");
+		System.out.println(goodbar);
+		System.out.println(doritos);
+		goodbar.addByOne();
+		goodbar.addByOne();
+		goodbar.addByOne();
+		goodbar.addByOne();
+		goodbar.addByOne();
+		doritos.addByOne();
+		doritos.addByOne();
+		doritos.addByOne();
+		doritos.addByOne();
 		
-		
-		
-		this.addItem(goodbarLot);
-		this.addItem(mmsLot);
-		this.addItem(doritosLot);
-		this.addItem(laysLot);
-		this.addItem(cokeLot);
-		this.addItem(cokeLot);
-		this.addItem(cokeDietLot);
-		this.addItem(cokeDietFreeLot);
-		this.addItem(spriteLot);
-		this.addItem(spriteDietLot);
-		
-		int i = 0;
-		while (i < 33){
-			mmsLot.removeByOne();
-			i++;
-		}
-		
-		displayAll();
-		System.out.println("Do you have Diet Sprite? " + this.find(spriteDietLot));
-		System.out.println("Do you have M&Ms? " + this.find(mmsLot));
-		System.out.println("Do you have lays? " + this.find(laysLot));
-		System.out.println("Do you have Coke? " + this.find(cokeLot));
-		System.out.println("Do you have CB001? " + this.getItembyID( "001"));
+		System.out.println("Instantiate several");
+		System.out.println(goodbar);
+		System.out.println(doritos);
 	}
 	
 	@Override

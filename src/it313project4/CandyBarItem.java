@@ -29,24 +29,23 @@ public class CandyBarItem extends StockItem {
 		this._chocolate = _chocolate;
 	}
 	
-	private String new_id (String the_id) {
-		String appendID = "CB" + the_id;
-		return appendID;
+	private String new_id() {
+		this._newID = "CB";
+		return _newID;
 	}
 	
-	public CandyBarItem(String _id, String _brandName, String _description, Double _price, int _barOunce, boolean
-			_chocolate, int _quantity) {
-		super(_brandName, _description, _price, _quantity);
-		this._newID = new_id(_id);
+	public CandyBarItem(String _brandName, String _description, Double _price, int _barOunce, boolean
+			_chocolate) {
+		super(_brandName, _description, _price);
+		this._newID = new_id();
 		this._barOunce = _barOunce;
 		this._chocolate = _chocolate;
-		
 	}
 	
 	@Override
 	public String toString () {
 		return "CandyBarItem: " +
-				"ID = " + _newID +
+				"ID = " + _newID + Integer.toString(get_id()) +
 				", " + super.toString() +
 				"\n" + "Bar ounce = " + _barOunce +
 				", Chocolate? " + _chocolate + "\n";

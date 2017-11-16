@@ -9,17 +9,24 @@
 package it313project4;
 
 public class StockItem {
-	private String _id;
+	private int _id;
 	private String _brandName;
 	private String _description;
 	private Double _price;
 	private int _quantity;
 	
-	public String get_id() {
+	public int get_id() {
 		return _id;
 	}
 	
-	private void set_id(String _id) { this._id = _id; }
+	public void set_id () {
+		this._id= 1;
+	}
+	
+	private void next_id() {
+		this._id = _id++;
+	}
+	
 	
 	/**
 	 *
@@ -71,15 +78,13 @@ public class StockItem {
 	
 	/**
 	 *
-	 * @param quantity
-	 * @return
 	 */
-	private void set_quantity(int quantity) {
-		//
-		this._quantity = quantity;
+	private void set_quantity() {
+		this.addByOne();
 	}
 	
 	public void addByOne() {
+		_id++;
 		_quantity++;
 	}
 	
@@ -95,15 +100,13 @@ public class StockItem {
 	 * @param _description
 	 * @param _price
 	 */
-	public StockItem(String _brandName, String _description, Double _price, int _quantity) {
-		/* this._id = _id; */
+	public StockItem(String _brandName, String _description, Double _price) {
+		this.set_quantity();
+		this.set_id();
 		this._brandName = _brandName;
 		this._description = _description;
 		this._price = _price;
-		this._quantity = _quantity;
-		int new_quantity = _quantity;
-		set_quantity(new_quantity);
-		
+	
 	}
 	
 	@Override

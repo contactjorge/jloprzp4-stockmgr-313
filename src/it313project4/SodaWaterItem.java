@@ -15,7 +15,7 @@ public class SodaWaterItem extends StockItem{
 	private int _fluidOunce;
 	private boolean _caffeine;
 	private boolean _sweetened;
-	private String newID;
+	private String _newID;
 	
 	private boolean is_caffeine() {
 		return _caffeine;
@@ -41,15 +41,15 @@ public class SodaWaterItem extends StockItem{
 		this._fluidOunce = _fluidOunce;
 	}
 	
-	private String new_id (String the_id) {
-		newID = "SW" + the_id; //prepend SW to ID
-		return newID;
+	private String new_id() {
+		this._newID = "SW";
+		return _newID;
 	}
 	
-	public SodaWaterItem(String _id, String _brandName, String _description, int _fluidOunce, Double _price, boolean
-			_caffeine, boolean _sweetened, int _quantity) {
-		super(_brandName, _description, _price, _quantity);
-		newID = new_id(_id);
+	public SodaWaterItem(String _brandName, String _description, int _fluidOunce, Double _price, boolean
+			_caffeine, boolean _sweetened) {
+		super(_brandName, _description, _price);
+		this._newID = new_id();
 		this._caffeine = _caffeine;
 		this._sweetened = _sweetened;
 		this._fluidOunce = _fluidOunce;
@@ -57,8 +57,8 @@ public class SodaWaterItem extends StockItem{
 	
 	@Override
 	public String toString () {
-		return "SodaWaterItem: " + "ID = " + newID +
-				", " + super.toString() +
+		return "SodaWaterItem: " + "ID = " + _newID +
+				", " + super.toString() + Integer.toString(get_id()) +
 				"\n" + "Fluid Ounce = " + _fluidOunce +
 				", Has caffeine? " + _caffeine +
 				", Is sweetened? " + _sweetened + "\n";
