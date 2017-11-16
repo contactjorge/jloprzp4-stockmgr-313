@@ -9,24 +9,19 @@
 package it313project4;
 
 public class StockItem {
-	private int _id;
+	private String _id;
 	private String _brandName;
 	private String _description;
 	private Double _price;
 	private int _quantity;
 	
-	public int get_id() {
+	public void set_id () {
+		this._id= "SN";
+	}
+	
+	public String get_id() {
 		return _id;
 	}
-	
-	public void set_id () {
-		this._id= 1;
-	}
-	
-	private void next_id() {
-		this._id = _id++;
-	}
-	
 	
 	/**
 	 *
@@ -84,7 +79,6 @@ public class StockItem {
 	}
 	
 	public void addByOne() {
-		_id++;
 		_quantity++;
 	}
 	

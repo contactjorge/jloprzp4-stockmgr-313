@@ -112,25 +112,60 @@ public class InventoryManager{
 	}
 	
 	public InventoryManager () {
-		CandyBarItem goodbar = new CandyBarItem("Mr. Goodbar", "Hershey's Mr. Goodbar", 0.45, 12, true);
+		CandyBarItem peanutMMS = new CandyBarItem("MMS Peanut", "MARS M&M's", 0.45, 12, true, true);
+		CandyBarItem chocMMS = new CandyBarItem("MMS Chocolate", "MARS M&M's", 0.45, 12, false, true);
+		CandyBarItem goobers = new CandyBarItem("Goobers", "Nestle' Goobers", 0.45, 12, true, true);
+		CandyBarItem goodbar = new CandyBarItem("Mr. Goodbar", "Hershey's Mr. Goodbar", 0.45, 12, true, true);
 		CrispsItem doritos = new CrispsItem("Doritos", "Frito Lay Cheesey Corn Crisps", 0.80, 24, false);
+		SodaWaterItem coke = new SodaWaterItem("Coke", "Flagship coca-cola product", 8, 0.80, true, true);
 		
 		System.out.println("Instantiate 1");
+		System.out.println(peanutMMS);
+		System.out.println(chocMMS);
+		System.out.println(goobers);
 		System.out.println(goodbar);
 		System.out.println(doritos);
+		System.out.println(coke);
+		
+		peanutMMS.addByOne();
+		peanutMMS.addByOne();
+		peanutMMS.addByOne();
+		peanutMMS.addByOne();
+		peanutMMS.addByOne();
+		peanutMMS.addByOne();
+		
 		goodbar.addByOne();
 		goodbar.addByOne();
 		goodbar.addByOne();
 		goodbar.addByOne();
-		goodbar.addByOne();
+
+		chocMMS.addByOne();
+		chocMMS.addByOne();
+		chocMMS.addByOne();
+		chocMMS.addByOne();
+		
+		goobers.addByOne();
+		goobers.addByOne();
+		goobers.addByOne();
+		goobers.addByOne();
+		
 		doritos.addByOne();
 		doritos.addByOne();
 		doritos.addByOne();
 		doritos.addByOne();
 		
+		coke.addByOne();
+		coke.addByOne();
+		coke.addByOne();
+		
+		
 		System.out.println("Instantiate several");
+		System.out.println(peanutMMS);
+		System.out.println(chocMMS);
+		System.out.println(goobers);
 		System.out.println(goodbar);
 		System.out.println(doritos);
+		System.out.println(coke);
 	}
 	
 	@Override

@@ -11,6 +11,7 @@ package it313project4;
 public class CandyBarItem extends StockItem {
 	private int _barOunce;
 	private boolean _chocolate;
+	private boolean _nuts;
 	private String _newID;
 	
 	private int get_barOunce() {
@@ -29,25 +30,55 @@ public class CandyBarItem extends StockItem {
 		this._chocolate = _chocolate;
 	}
 	
-	private String new_id() {
-		this._newID = "CB";
+	public boolean is_nuts () {
+		return _nuts;
+	}
+	
+	public void set_nuts (boolean _nuts) {
+		this._nuts=_nuts;
+	}
+	
+	private String prefix_id(String brand) {
+		String prefix1 = "CB.";
+		String prefix2 = "";
+		String prefix3 = "";
+		if (_nuts) {
+			prefix2 = "N";
+		}
+		else {
+			prefix2 = "R";
+		}
+		
+		if (_chocolate) {
+			prefix3 = "CH";
+		}
+		else {
+			prefix3 = "NC";
+		}
+		this._newID = prefix1 + brand.substring(0, 2).toUpperCase() + prefix2 + prefix3;
 		return _newID;
 	}
 	
-	public CandyBarItem(String _brandName, String _description, Double _price, int _barOunce, boolean
+	public CandyBarItem(String _brandName, String _description, Double _price, int _barOunce, boolean _nuts, boolean
 			_chocolate) {
 		super(_brandName, _description, _price);
-		this._newID = new_id();
+		String brand = _brandName;
 		this._barOunce = _barOunce;
 		this._chocolate = _chocolate;
+		this._nuts = _nuts;
+		
+		this._newID = prefix_id(brand);
 	}
 	
 	@Override
 	public String toString () {
 		return "CandyBarItem: " +
-				"ID = " + _newID + Integer.toString(get_id()) +
+				"ID = " + _newID +
 				", " + super.toString() +
 				"\n" + "Bar ounce = " + _barOunce +
+				", Nuts? " + _chocolate + "\n" +
 				", Chocolate? " + _chocolate + "\n";
 	}
+	
+
 }

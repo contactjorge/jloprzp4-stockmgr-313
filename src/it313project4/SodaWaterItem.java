@@ -41,24 +41,42 @@ public class SodaWaterItem extends StockItem{
 		this._fluidOunce = _fluidOunce;
 	}
 	
-	private String new_id() {
-		this._newID = "SW";
+	private String prefix_id(String brand) {
+		String prefix1 = "SW.";
+		String prefix2 = "";
+		String prefix3 = "";
+		if (_sweetened) {
+			prefix2 = "S";
+		}
+		else {
+			prefix2 = "D";
+		}
+		if (_caffeine) {
+			prefix3 = "C";
+		}
+		else {
+			prefix3 = "F";
+		}
+		this._newID = prefix1+ brand.substring(0, 3).toUpperCase() + prefix2 + prefix3;
 		return _newID;
 	}
+	
 	
 	public SodaWaterItem(String _brandName, String _description, int _fluidOunce, Double _price, boolean
 			_caffeine, boolean _sweetened) {
 		super(_brandName, _description, _price);
-		this._newID = new_id();
+		String brand = _brandName;
 		this._caffeine = _caffeine;
 		this._sweetened = _sweetened;
 		this._fluidOunce = _fluidOunce;
+		
+		this._newID = prefix_id(brand);
 	}
 	
 	@Override
 	public String toString () {
 		return "SodaWaterItem: " + "ID = " + _newID +
-				", " + super.toString() + Integer.toString(get_id()) +
+				", " + super.toString() +
 				"\n" + "Fluid Ounce = " + _fluidOunce +
 				", Has caffeine? " + _caffeine +
 				", Is sweetened? " + _sweetened + "\n";
