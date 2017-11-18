@@ -13,34 +13,18 @@ public class CrispsItem extends StockItem {
 	private boolean _baked;
 	private String _newID;
 	
-	/**
-	 *
-	 * @return
-	 */
 	private int getBagOunce() {
 		return bagOunce;
 	}
 	
-	/**
-	 *
-	 * @param bagOunce
-	 */
 	private void setBagOunce(int bagOunce) {
 		this.bagOunce = bagOunce;
 	}
 	
-	/**
-	 *
-	 * @param _baked
-	 */
 	private void set_baked(boolean _baked) {
 		this._baked = _baked;
 	}
 	
-	/**
-	 *
-	 * @return
-	 */
 	private boolean is_baked() { return _baked; }
 	
 	public String prefix_id(String brand) {
@@ -53,10 +37,6 @@ public class CrispsItem extends StockItem {
 			prefix2 = "FR";
 		}
 		this._newID = prefix1 + brand.substring(0, 3).toUpperCase() + prefix2;
-		return _newID;
-	}
-	
-	public String get_newID() {
 		return _newID;
 	}
 	

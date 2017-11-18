@@ -60,8 +60,20 @@ public class InventoryManager {
 		}
 		return -1;
 	}
-	//not tested
-*/
+	
+	public String getItembyID (String itemID) {
+		for(StockItem item : _col)
+		{
+			System.out.println(item.toString());
+			if (itemID.equals(item.get_id()))
+			{
+				return item.toString() + " Found.";
+			}
+		}
+		return "Item not found";
+	}
+	
+
 	
 	private int getItembyID (StockItem purchasedItem) {
 		String itemID = purchasedItem.get_id();
@@ -78,6 +90,26 @@ public class InventoryManager {
 		}
 		return -1;
 	}
+*/
+
+private String getItembyID (StockItem purchasedItem) {
+	String itemID = purchasedItem.get_id();
+	int i = 0;
+	
+	for(StockItem item : this._col)
+		{
+			System.out.println(itemID);
+			System.out.println(i);
+			if (itemID.equals(item.get_id()))
+			{
+				
+				return itemID  + " Found.";
+			}
+			i++;
+		}
+		return "Item not found";
+	}
+	//not tested
 	
 	private void addItem (StockItem the_purchasedItem, int quantity) {
 		// Add current message to beginning of archive.
@@ -91,10 +123,8 @@ public class InventoryManager {
 	//done
 	
 	private void removeItem (StockItem the_purchasedItem) {
-		int itemID = getItembyID(the_purchasedItem);
-		if (itemID != 1020304050){
+		String itemID = getItembyID(the_purchasedItem);
 			_col.remove(itemID); //return the_collection;
-		}
 	}
 	//not tested
 	

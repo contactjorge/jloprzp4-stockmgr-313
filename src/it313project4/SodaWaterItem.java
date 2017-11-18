@@ -8,9 +8,6 @@
  **/
 package it313project4;
 
-/**
- *
- */
 public class SodaWaterItem extends StockItem{
 	private int _fluidOunce;
 	private boolean _caffeine;
@@ -60,8 +57,6 @@ public class SodaWaterItem extends StockItem{
 		this._newID = prefix1+ get_brandName().substring(0, 3).toUpperCase() + prefix2 + prefix3;
 		return _newID;
 	}
-	
-
 	
 	public SodaWaterItem(String _brandName, String _description, int _fluidOunce, Double _price, boolean
 			_caffeine, boolean _sweetened) {

@@ -38,10 +38,6 @@ public class CandyBarItem extends StockItem {
 		this._nuts=_nuts;
 	}
 	
-	public void set_newID(String _newID) {
-		this._newID = _newID;
-	}
-	
 	private String prefix_id(String brand) {
 		String prefix1 = "CB.";
 		String prefix2 = "";
@@ -60,10 +56,6 @@ public class CandyBarItem extends StockItem {
 			prefix3 = "NC";
 		}
 		this._newID = prefix1 + brand.substring(0, 2).toUpperCase() + prefix2 + prefix3;
-		return _newID;
-	}
-	
-	public String get_newID() {
 		return _newID;
 	}
 	
