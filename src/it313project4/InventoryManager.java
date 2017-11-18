@@ -24,6 +24,11 @@ public class InventoryManager {
 	}
 	//done
 	
+	private void display (StockItem the_item) {
+		//Display All Stock Items
+		System.out.println(the_item);
+	}
+	
 	private void displayAll () {
 		//Display All Stock Items
 		for(StockItem the_item : _col) {
@@ -46,7 +51,7 @@ public class InventoryManager {
 		return "No we do not.\n";
 	}
 	//not tested
-/*
+/**
 	private int getItembyID (StockItem purchasedItem) {
 		String itemID = purchasedItem.get_id();
 		
@@ -90,7 +95,7 @@ public class InventoryManager {
 		}
 		return -1;
 	}
-*/
+**/
 
 private String getItembyID (StockItem purchasedItem) {
 	String itemID = purchasedItem.get_id();
@@ -138,12 +143,16 @@ private String getItembyID (StockItem purchasedItem) {
 		CrispsItem doritos = new CrispsItem("Doritos", "Frito Lay Cheesey Corn Crisps", 0.80, 24, false);
 		SodaWaterItem coke = new SodaWaterItem("Coke", "Flagship coca-cola product", 8, 0.80, true, true);
 		
-		addItem(goobers, 1);
+		
 		addItem(goodbar, 1);
 		addItem(doritos, 1);
 		addItem(coke, 4);
+		addItem(peanutMMS, 2);
+		addItem(chocMMS, 2);
 
 		getItembyID(coke);
+		
+		
 		
 		//removeItem(coke);
 		
@@ -155,7 +164,10 @@ private String getItembyID (StockItem purchasedItem) {
 		System.out.println(goodbar);
 		System.out.println(doritos);
 		System.out.println(coke);
-
+		displayAll();
+		
+		System.out.println("\n\nHow many Goobers?");
+		display(goobers);
 	}
 	
 	@Override
