@@ -74,10 +74,10 @@ public class CandyBarItem extends StockItem {
 	public String toString () {
 		return "CandyBarItem: " +
 				"ID = " + _newID +
+				", " + "Bar ounce = " + _barOunce +
 				", " + super.toString() +
-				"\n" + "Bar ounce = " + _barOunce +
-				", Nuts? " + _chocolate + "\n" +
-				", Chocolate? " + _chocolate + "\n";
+				", Has Nuts? " + _chocolate +
+				", Chocolate? " + _chocolate;
 	}
 	
 

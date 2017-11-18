@@ -9,13 +9,11 @@
 package it313project4;
 
 import java.util.ArrayList;
-//import java.util.Observable;
 
-public class InventoryManager{
-	public ArrayList<StockItem> _col = new ArrayList<>(); //_col instance variable for the collection of Stock Items
-	public StockItem purchasedItem; //Individual Item
+public class InventoryManager {
+	private static final long serialVersionUID = 4L;
 	
-	// Getter for stock item as it is purchased.
+	private ArrayList<StockItem> _col = new ArrayList<>(); //_col instance variable for the collection of Stock
 	
 	/**
 	 *
@@ -29,26 +27,8 @@ public class InventoryManager{
 	 *
 	 * @return
 	 */
-	public ArrayList<StockItem> get_col () {
+	private ArrayList<StockItem> get_col () {
 		return _col; //getter for the _col instance variable
-	}
-	
-	/**
-	 *
-	 * @param purchasedItem
-	 */
-	public void setPurchasedItem (StockItem purchasedItem) {
-		//Set the purchased Item
-		this.purchasedItem = purchasedItem;
-	}
-	
-	/**
-	 *
-	 * @param purchasedItem
-	 */
-	public void addItem (StockItem purchasedItem) {
-		// Add current message to beginning of archive.
-		this._col.add(purchasedItem);
 	}
 	
 	/**
@@ -57,7 +37,7 @@ public class InventoryManager{
 	public void displayAll () {
 		//Display All Stock Items
 		for(StockItem the_item : _col) {
-			System.out.println(the_item.toString());
+			System.out.println(the_item);
 		}
 		
 	}
@@ -80,6 +60,10 @@ public class InventoryManager{
 		return "No we do not.\n";
 	}
 	
+	/**
+	 *
+	 * @return
+	 */
 	public String getItembyID (String itemID) {
 		for(StockItem item : _col)
 		{
@@ -92,26 +76,28 @@ public class InventoryManager{
 		return "Item not found";
 	}
 	
-	/**
-	 *
-	 * @return
-	 */
-	public StockItem getPurchasedItem () {
-		
-		return purchasedItem;//Return the purchased Item
+	private void addItem (StockItem the_purchasedItem, int quantity) {
+		// Add current message to beginning of archive.
+		int i = 1;
+		do {
+			the_purchasedItem.addByOne();
+			this._col.add(the_purchasedItem);
+			i++;
+		}
+		while (i < quantity );
 	}
 	
 	/**
 	 *
-	 * @param the_collection
+	 * @param purchasedItem
 	 */
-	public void removePurchasedItem (ArrayList<StockItem> the_collection) {
-		
-		this._col = the_collection; //return the_collection;
-		
+	public void removeItem (StockItem the_purchasedItem) {
+		_col.remove(the_purchasedItem); //return the_collection;
 	}
 	
 	public InventoryManager () {
+		this._col = _col;
+		
 		CandyBarItem peanutMMS = new CandyBarItem("MMS Peanut", "MARS M&M's", 0.45, 12, true, true);
 		CandyBarItem chocMMS = new CandyBarItem("MMS Chocolate", "MARS M&M's", 0.45, 12, false, true);
 		CandyBarItem goobers = new CandyBarItem("Goobers", "Nestle' Goobers", 0.45, 12, true, true);
@@ -120,6 +106,7 @@ public class InventoryManager{
 		SodaWaterItem coke = new SodaWaterItem("Coke", "Flagship coca-cola product", 8, 0.80, true, true);
 		
 		System.out.println("Instantiate 1");
+		System.out.print("-------------------\n");
 		System.out.println(peanutMMS);
 		System.out.println(chocMMS);
 		System.out.println(goobers);
@@ -127,51 +114,34 @@ public class InventoryManager{
 		System.out.println(doritos);
 		System.out.println(coke);
 		
-		peanutMMS.addByOne();
-		peanutMMS.addByOne();
-		peanutMMS.addByOne();
-		peanutMMS.addByOne();
-		peanutMMS.addByOne();
-		peanutMMS.addByOne();
+		addItem(peanutMMS, 32);
+		addItem(chocMMS, 32);
+		addItem(goobers, 12);
+		addItem(goodbar, 12);
 		
-		goodbar.addByOne();
-		goodbar.addByOne();
-		goodbar.addByOne();
-		goodbar.addByOne();
-
-		chocMMS.addByOne();
-		chocMMS.addByOne();
-		chocMMS.addByOne();
-		chocMMS.addByOne();
+		addItem(doritos, 24);
+		addItem(coke, 1);
+		addItem(coke, 1);
 		
-		goobers.addByOne();
-		goobers.addByOne();
-		goobers.addByOne();
-		goobers.addByOne();
+		removeItem(peanutMMS);
+		removeItem(peanutMMS);
+		removeItem(chocMMS);
 		
-		doritos.addByOne();
-		doritos.addByOne();
-		doritos.addByOne();
-		doritos.addByOne();
-		
-		coke.addByOne();
-		coke.addByOne();
-		coke.addByOne();
-		
-		
+		System.out.print("\n");
 		System.out.println("Instantiate several");
+		System.out.print("-------------------\n");
 		System.out.println(peanutMMS);
 		System.out.println(chocMMS);
 		System.out.println(goobers);
 		System.out.println(goodbar);
 		System.out.println(doritos);
 		System.out.println(coke);
+
 	}
 	
 	@Override
 	public String toString () {
 		return "InventoryManager: \n" +
-				"Collection = \n" + _col + "\n" +
-				"Purchased Item = \n" + purchasedItem + "\n";
+				"Collection = \n" + _col + "\n";
 	}
 }

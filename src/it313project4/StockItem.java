@@ -105,9 +105,9 @@ public class StockItem {
 	
 	@Override
 	public String toString() {
-		return ", Brand Name = " + _brandName +
+		return "Brand Name = " + _brandName +
 				", Description = '" + _description + '\'' +
-				", Price = $" + _price +
+				"\n" + "Price = $" + _price +
 				", Quantity = " + _quantity;
 	}
 }

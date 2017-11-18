@@ -43,7 +43,7 @@ public class CrispsItem extends StockItem {
 	 */
 	private boolean is_baked() { return _baked; }
 	
-	private String prefix_id(String brand) {
+	public String prefix_id(String brand) {
 		String prefix1 = "CP.";
 		String prefix2 = "";
 		if (_baked) {
@@ -80,8 +80,8 @@ public class CrispsItem extends StockItem {
 	public String toString () {
 		return "CrispsItem: " +
 				"ID = " + _newID +
+				", Bag Size = " + bagOunce + "Ounces" +
 				", " + super.toString() +
-				"\n" + "Bag Size = " + bagOunce + "Ounces" +
-				", Baked of Fried? " + _baked + "\n";
+				", Baked of Fried? " + _baked;
 	}
 }

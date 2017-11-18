@@ -76,9 +76,9 @@ public class SodaWaterItem extends StockItem{
 	@Override
 	public String toString () {
 		return "SodaWaterItem: " + "ID = " + _newID +
+				", Fluid Ounce = " + _fluidOunce +
 				", " + super.toString() +
-				"\n" + "Fluid Ounce = " + _fluidOunce +
 				", Has caffeine? " + _caffeine +
-				", Is sweetened? " + _sweetened + "\n";
+				", Is sweetened? " + _sweetened;
 	}
 }
