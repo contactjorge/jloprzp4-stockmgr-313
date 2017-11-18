@@ -56,32 +56,24 @@ public class CrispsItem extends StockItem {
 		return _newID;
 	}
 	
-	/**
-	 *
-	 * @param _id
-	 * @param _brandName
-	 * @param _description
-	 * @param _price
-	 * @param bagOunce
-	 * @param _baked
-	 * @param quantity
-	 */
+	public String get_newID() {
+		return _newID;
+	}
+	
 	public CrispsItem(String _brandName, String _description, Double _price, int bagOunce, boolean
 			_baked) {
 		super(_brandName, _description, _price);
 		String brand = _brandName;
 		this._baked = _baked;
 		this.bagOunce = bagOunce;
-		
 		this._newID = prefix_id(brand);
+		set_newID(this._newID);
 	}
 	
 	@Override
 	public String toString () {
-		return "CrispsItem: " +
-				"ID = " + _newID +
+		return "CrispsItem: " + super.toString() +
 				", Bag Size = " + bagOunce + "Ounces" +
-				", " + super.toString() +
 				", Baked of Fried? " + _baked;
 	}
 }

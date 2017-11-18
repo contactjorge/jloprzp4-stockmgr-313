@@ -19,63 +19,44 @@ public class StockItem {
 		this._id= "SN";
 	}
 	
-	public String get_id() {
-		return _id;
-	}
-	
-	/**
-	 *
-	 * @param _brandName
-	 */
 	private void set_brandName(String _brandName) {
 		this._brandName = _brandName;
 	}
 	
-	public String get_brandName() {
-		return _brandName;
-	}
-	
-	/**
-	 *
-	 * @return
-	 */
 	private void set_description(String _description) {
 		this._description = _description;
-	}
-	
-	/**
-	 *
-	 * @return
-	 */
-	private String get_description() {
-		return _description;
-	}
-	
-	/**
-	 *
-	 * @return
-	 */
-	private Double get_price() {
-		return _price;
 	}
 	
 	private void set_price(Double _price) {
 		this._price = _price;
 	}
 	
+	private void set_quantity(int _quantity) {
+		this._quantity = _quantity;
+	}
+	
+	public String get_id() {
+		return _id;
+	}
+	
+	public String get_brandName() {
+		return _brandName;
+	}
+	
+	private String get_description() {
+		return _description;
+	}
+	
+	private Double get_price() {
+		return _price;
+	}
+
 	private int get_quantity() {
 		return _quantity;
 	}
 	
 	public int	known_quantity() {
 		return _quantity;
-	}
-	
-	/**
-	 *
-	 */
-	private void set_quantity() {
-		this.addByOne();
 	}
 	
 	public void addByOne() {
@@ -88,6 +69,10 @@ public class StockItem {
 		}
 	}
 	
+	public void set_newID(String newID) {
+		 this._id = newID;
+	}
+	
 	/**
 	 *
 	 * @param _brandName
@@ -95,8 +80,8 @@ public class StockItem {
 	 * @param _price
 	 */
 	public StockItem(String _brandName, String _description, Double _price) {
-		this.set_quantity();
 		this.set_id();
+		this._quantity = 0;
 		this._brandName = _brandName;
 		this._description = _description;
 		this._price = _price;
@@ -105,7 +90,8 @@ public class StockItem {
 	
 	@Override
 	public String toString() {
-		return "Brand Name = " + _brandName +
+		return "ID = " + _id + 
+				", Brand Name = " + _brandName +
 				", Description = '" + _description + '\'' +
 				"\n" + "Price = $" + _price +
 				", Quantity = " + _quantity;

@@ -38,6 +38,10 @@ public class CandyBarItem extends StockItem {
 		this._nuts=_nuts;
 	}
 	
+	public void set_newID(String _newID) {
+		this._newID = _newID;
+	}
+	
 	private String prefix_id(String brand) {
 		String prefix1 = "CB.";
 		String prefix2 = "";
@@ -59,6 +63,10 @@ public class CandyBarItem extends StockItem {
 		return _newID;
 	}
 	
+	public String get_newID() {
+		return _newID;
+	}
+	
 	public CandyBarItem(String _brandName, String _description, Double _price, int _barOunce, boolean _nuts, boolean
 			_chocolate) {
 		super(_brandName, _description, _price);
@@ -66,16 +74,14 @@ public class CandyBarItem extends StockItem {
 		this._barOunce = _barOunce;
 		this._chocolate = _chocolate;
 		this._nuts = _nuts;
-		
 		this._newID = prefix_id(brand);
+		set_newID(this._newID);
 	}
 	
 	@Override
 	public String toString () {
-		return "CandyBarItem: " +
-				"ID = " + _newID +
+		return "CandyBarItem: " + super.toString() +
 				", " + "Bar ounce = " + _barOunce +
-				", " + super.toString() +
 				", Has Nuts? " + _chocolate +
 				", Chocolate? " + _chocolate;
 	}

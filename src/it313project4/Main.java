@@ -10,13 +10,10 @@
  **/
 package it313project4;
 
-public class Main {    public static void main(String[] args) {
+public class Main {
+	
+	public static void main(String[] args) {
 	// write your code here
 		InventoryManager inventory = new InventoryManager();
-		
-		System.out.println();
-		System.out.println("Display All in Collection");
-		System.out.print("-------------------\n");
-		inventory.displayAll();
 	}
 }
