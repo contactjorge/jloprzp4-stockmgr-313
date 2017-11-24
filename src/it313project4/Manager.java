@@ -1,6 +1,30 @@
 package it313project4;
 
 public class Manager extends InventoryManager{
+	private String managerInterface;
+	private CandyBarItem _candyBar;
+	private CrispsItem _crips;
+	private SodaWaterItem _sodaWater;
+	
+	public String getManagerInterface() {
+		return managerInterface;
+	}
+	
+	public void setManagerInterface(String managerInterface) {
+		this.managerInterface = managerInterface;
+	}
+	
+	public void set_candyBar(CandyBarItem _candyBar) {
+		this._candyBar = _candyBar;
+	}
+	
+	public void set_crips(CrispsItem _crips) {
+		this._crips = _crips;
+	}
+	
+	public void set_sodaWater(SodaWaterItem _sodaWater) {
+		this._sodaWater = _sodaWater;
+	}
 	
 	public void addCandyBar {
 		CandyBarItem peanutMMS = new CandyBarItem("MMS Peanut", "MARS M&M's", 0.45, 12, true, true);
@@ -10,15 +34,16 @@ public class Manager extends InventoryManager{
 		
 	}
 	
+	public void addCrisps {
+		CrispsItem doritos = new CrispsItem("Doritos", "Frito Lay Cheesey Corn Crisps", 0.80, 24, false);
+		
+	}
+	
 	public void addSodaWater {
 		SodaWaterItem coke = new SodaWaterItem("Coke", "Flagship coca-cola product", 8, 0.80, true, true);
 		
 	}
 	
-	public void addCrisps {
-		CrispsItem doritos = new CrispsItem("Doritos", "Frito Lay Cheesey Corn Crisps", 0.80, 24, false);
-		
-	}
 	public Manager {
 		
 		
