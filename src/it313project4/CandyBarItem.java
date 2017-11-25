@@ -9,73 +9,73 @@
 package it313project4;
 
 public class CandyBarItem extends StockItem {
-	private int _barOunce;
-	private boolean _chocolate;
-	private boolean _nuts;
-	private String _newID;
+	private int $barOunce;
+	private boolean $chocolate;
+	private boolean $nuts;
+	private String $newID;
 	
 	private int get_barOunce() {
-		return _barOunce;
+		return $barOunce;
 	}
 	
 	private void set_barOunce(int _barOunce) {
-		this._barOunce = _barOunce;
+		this.$barOunce = _barOunce;
 	}
 	
 	private boolean is_chocolate() {
-		return _chocolate;
+		return $chocolate;
 	}
 	
 	private void set_chocolate(boolean _chocolate) {
-		this._chocolate = _chocolate;
+		this.$chocolate = _chocolate;
 	}
 	
 	public boolean is_nuts () {
-		return _nuts;
+		return $nuts;
 	}
 	
 	public void set_nuts (boolean _nuts) {
-		this._nuts=_nuts;
+		this.$nuts=_nuts;
 	}
 	
 	private String prefix_id(String brand) {
 		String prefix1 = "CB.";
 		String prefix2 = "";
 		String prefix3 = "";
-		if (_nuts) {
+		if ($nuts) {
 			prefix2 = "N";
 		}
 		else {
 			prefix2 = "R";
 		}
 		
-		if (_chocolate) {
+		if ($chocolate) {
 			prefix3 = "CH";
 		}
 		else {
 			prefix3 = "NC";
 		}
-		this._newID = prefix1 + brand.substring(0, 2).toUpperCase() + prefix2 + prefix3;
-		return _newID;
+		this.$newID = prefix1 + brand.substring(0, 2).toUpperCase() + prefix2 + prefix3;
+		return $newID;
 	}
 	
 	public CandyBarItem(String _brandName, String _description, Double _price, int _barOunce, boolean _nuts, boolean
 			_chocolate) {
 		super(_brandName, _description, _price);
 		String brand = _brandName;
-		this._barOunce = _barOunce;
-		this._chocolate = _chocolate;
-		this._nuts = _nuts;
-		this._newID = prefix_id(brand);
-		set_newID(this._newID);
+		this.$barOunce = _barOunce;
+		this.$chocolate = _chocolate;
+		this.$nuts = _nuts;
+		this.$newID = prefix_id(brand);
+		set_newID(this.$newID);
 	}
 	
 	@Override
 	public String toString () {
 		return "CandyBarItem: " + super.toString() +
-				", " + "Bar ounce = " + _barOunce +
-				", Has Nuts? " + _chocolate +
-				", Chocolate? " + _chocolate;
+				", " + "Bar ounce = " + $barOunce +
+				", Has Nuts? " + $chocolate +
+				", Chocolate? " + $chocolate;
 	}
 	
 

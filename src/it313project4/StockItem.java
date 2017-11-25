@@ -9,68 +9,68 @@
 package it313project4;
 
 public class StockItem {
-	private String _id;
-	private String _brandName;
-	private String _description;
-	private Double _price;
-	private int _quantity;
+	private String $id;
+	private String $brandName;
+	private String $description;
+	private Double $price;
+	private int $quantity;
 	
 	public void set_id () {
-		this._id= "SN";
+		this.$id= "SN";
 	}
 	
-	private void set_brandName(String _brandName) {
-		this._brandName = _brandName;
+	private void setBrandName(String _brandName) {
+		this.$brandName = _brandName;
 	}
 	
-	private void set_description(String _description) {
-		this._description = _description;
+	private void setDescription(String _description) {
+		this.$description = _description;
 	}
 	
-	private void set_price(Double _price) {
-		this._price = _price;
+	private void setPrice(Double _price) {
+		this.$price = _price;
 	}
 	
-	private void set_quantity(int _quantity) {
-		this._quantity = _quantity;
+	private void setQuantity(int _quantity) {
+		this.$quantity = _quantity;
 	}
 	
 	public String get_id() {
-		return _id;
+		return $id;
 	}
 	
 	public String get_brandName() {
-		return _brandName;
+		return $brandName;
 	}
 	
 	private String get_description() {
-		return _description;
+		return $description;
 	}
 	
 	private Double get_price() {
-		return _price;
+		return $price;
 	}
 
 	private int get_quantity() {
-		return _quantity;
+		return $quantity;
 	}
 	
 	public int	known_quantity() {
-		return _quantity;
+		return $quantity;
 	}
 	
 	public void addByOne() {
-		_quantity++;
+		$quantity++;
 	}
 	
 	public void removeByOne () {
-		while (_quantity > 0 ) {
-			_quantity--;
+		while ($quantity > 0 ) {
+			$quantity--;
 		}
 	}
 	
 	public void set_newID(String newID) {
-		 this._id = newID;
+		 this.$id = newID;
 	}
 	
 	/**
@@ -81,19 +81,19 @@ public class StockItem {
 	 */
 	public StockItem(String _brandName, String _description, Double _price) {
 		this.set_id();
-		this._quantity = 0;
-		this._brandName = _brandName;
-		this._description = _description;
-		this._price = _price;
+		this.$quantity = 0;
+		this.$brandName = _brandName;
+		this.$description = _description;
+		this.$price = _price;
 	
 	}
 	
 	@Override
 	public String toString() {
-		return "ID = " + _id + 
-				", Brand Name = " + _brandName +
-				", Description = '" + _description + '\'' +
-				"\n" + "Price = $" + _price +
-				", Quantity = " + _quantity;
+		return "ID = " + $id +
+				", Brand Name = " + $brandName +
+				", Description = '" + $description + '\'' +
+				"\n" + "Price = $" + $price +
+				", Quantity = " + $quantity;
 	}
 }
