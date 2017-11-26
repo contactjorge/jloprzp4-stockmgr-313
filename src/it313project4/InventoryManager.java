@@ -110,11 +110,6 @@ private String getItembyID (StockItem purchasedItem) {
 	
 	public InventoryManager () {
 		
-		CandyBarItem peanutMMS = new CandyBarItem("MMS Peanut", "MARS M&M's", 0.45, 12, true, true);
-		CandyBarItem chocMMS = new CandyBarItem("MMS Chocolate", "MARS M&M's", 0.45, 12, false, true);
-		CandyBarItem goobers = new CandyBarItem("Goobers", "Nestle' Goobers", 0.45, 12, true, true);
-		CandyBarItem goodbar = new CandyBarItem();
-		
 		displayItem(goodbar);
 		
 		addItem(peanutMMS, 12);
