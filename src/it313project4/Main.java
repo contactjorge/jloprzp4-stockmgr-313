@@ -14,6 +14,6 @@ public class Main {
 	
 	public static void main(String[] args) {
 	// write your code here
-		InventoryManager inventory = new InventoryManager();
+		InventoryManager inv = new InventoryManager();
 	}
 }

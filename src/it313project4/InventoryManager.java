@@ -10,6 +10,7 @@ package it313project4;
 
 import java.util.ArrayList;
 
+
 public class InventoryManager {
 	private static final long $serialVersionUID = 4L;
 	private ArrayList<StockItem> $col = new ArrayList<>(); //$col instance variable for the collection of Stock
@@ -110,18 +111,13 @@ private String getItembyID (StockItem purchasedItem) {
 	
 	public InventoryManager () {
 		
-		displayItem(goodbar);
+		ArrayList<StockItem> itemCollection = new ArrayList<>();
 		
-		addItem(peanutMMS, 12);
-		addItem(chocMMS, 12);
-		addItem(goobers, 24);
-		removeItem(peanutMMS, 3);
-		getItembyID(peanutMMS);
+		//InventoryManager inventoryManager = new InventoryManager();
+		
+		//Inventory inventory = new Inventory();
+
 		displayAll();
-	}
-	
-	public InventoryManager (ArrayList<StockItem> collection) {
-		this.$col = collection;
 	}
 	
 	@Override
