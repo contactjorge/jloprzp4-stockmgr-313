@@ -11,15 +11,15 @@ package it313project4;
 import java.util.ArrayList;
 
 public class InventoryManager {
-	private static final long serialVersionUID = 4L;
+	private static final long $serialVersionUID = 4L;
 	private ArrayList<StockItem> $col = new ArrayList<>(); //$col instance variable for the collection of Stock
 	
-	private void set$col (ArrayList<StockItem> $col) {
+	private void setCollection (ArrayList<StockItem> $col) {
 		this.$col = $col; //mutator for the $col instance variable
 	}
 	//done
 	
-	private ArrayList<StockItem> getCol () {
+	private ArrayList<StockItem> setCollection () {
 		return $col; //getter for the $col instance variable
 	}
 	//done
@@ -109,21 +109,24 @@ private String getItembyID (StockItem purchasedItem) {
 	//not tested
 	
 	public InventoryManager () {
-		ArrayList<StockItem> col = new ArrayList<StockItem>();
-		this.$col = col;
 		
 		CandyBarItem peanutMMS = new CandyBarItem("MMS Peanut", "MARS M&M's", 0.45, 12, true, true);
 		CandyBarItem chocMMS = new CandyBarItem("MMS Chocolate", "MARS M&M's", 0.45, 12, false, true);
 		CandyBarItem goobers = new CandyBarItem("Goobers", "Nestle' Goobers", 0.45, 12, true, true);
-		CandyBarItem goodbar = new CandyBarItem("Mr. Goodbar", "Hershey's Mr. Goodbar", 0.45, 12, true, true);
+		CandyBarItem goodbar = new CandyBarItem();
+		
+		displayItem(goodbar);
 		
 		addItem(peanutMMS, 12);
 		addItem(chocMMS, 12);
 		addItem(goobers, 24);
 		removeItem(peanutMMS, 3);
 		getItembyID(peanutMMS);
-		
-		
+		displayAll();
+	}
+	
+	public InventoryManager (ArrayList<StockItem> collection) {
+		this.$col = collection;
 	}
 	
 	@Override

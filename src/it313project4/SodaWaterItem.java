@@ -58,6 +58,13 @@ public class SodaWaterItem extends StockItem{
 		return $newID;
 	}
 	
+	public SodaWaterItem () {
+		$caffeine = false;
+		$sweetened = false;
+		$fluidOunce = 0;
+		$newID = "";
+	}
+	
 	public SodaWaterItem(String _brandName, String _description, int _fluidOunce, Double _price, boolean
 			_caffeine, boolean _sweetened) {
 		super(_brandName, _description, _price);

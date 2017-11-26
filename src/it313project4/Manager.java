@@ -26,31 +26,15 @@ public class Manager extends InventoryManager{
 		this.$sodaWater = _sodaWater;
 	}
 	
-	private void addCandyBar () {
-		CandyBarItem peanutMMS = new CandyBarItem("MMS Peanut", "MARS M&M's", 0.45, 12, true, true);
-		CandyBarItem chocMMS = new CandyBarItem("MMS Chocolate", "MARS M&M's", 0.45, 12, false, true);
-		CandyBarItem goobers = new CandyBarItem("Goobers", "Nestle' Goobers", 0.45, 12, true, true);
-		CandyBarItem goodbar = new CandyBarItem("Mr. Goodbar", "Hershey's Mr. Goodbar", 0.45, 12, true, true);
-		
-	}
 	
-	private void addCrisps () {
-		CrispsItem doritos = new CrispsItem("Doritos", "Frito Lay Cheesey Corn Crisps", 0.80, 24, false);
-		
-	}
-	
-	private void addSodaWater () {
-		SodaWaterItem coke = new SodaWaterItem("Coke", "Flagship coca-cola product", 8, 0.80, true, true);
-		
-	}
 	
 	private Manager () {
 		
 		
 		/**
-		 this.addCandyBar = addCandyBar;
-		 this.addCrisps = addCrisps;
-		 this.addSodaWater=addSodaWater;
+		this.addCandyBar = addCandyBar;
+		this.addCrisps = addCrisps;
+		this.addSodaWater=addSodaWater;
 		addItem(goodbar, 1);
 		addItem(doritos, 1);
 		addItem(coke, 4);

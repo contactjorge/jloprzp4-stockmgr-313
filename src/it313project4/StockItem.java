@@ -73,6 +73,13 @@ public class StockItem {
 		 this.$id = newID;
 	}
 	
+	public StockItem() {
+		$id = "";
+		$quantity = 0;
+		$brandName = "";
+		$description = "";
+		$price = 0.0;
+	}
 	/**
 	 *
 	 * @param _brandName
@@ -85,15 +92,14 @@ public class StockItem {
 		this.$brandName = _brandName;
 		this.$description = _description;
 		this.$price = _price;
-	
 	}
 	
 	@Override
 	public String toString() {
 		return "ID = " + $id +
-				", Brand Name = " + $brandName +
-				", Description = '" + $description + '\'' +
-				"\n" + "Price = $" + $price +
-				", Quantity = " + $quantity;
+			", Brand Name = " + $brandName +
+			", Description = '" + $description + '\'' +
+			"\n" + "Price = $" + $price +
+			", Quantity = " + $quantity;
 	}
 }

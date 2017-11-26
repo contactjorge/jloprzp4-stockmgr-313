@@ -59,6 +59,13 @@ public class CandyBarItem extends StockItem {
 		return $newID;
 	}
 	
+	public CandyBarItem () {
+		$barOunce = 0;
+		$chocolate = false;
+		$nuts = false;
+		$newID = "";
+	}
+	
 	public CandyBarItem(String _brandName, String _description, Double _price, int _barOunce, boolean _nuts, boolean
 			_chocolate) {
 		super(_brandName, _description, _price);

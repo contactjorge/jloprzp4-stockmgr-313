@@ -40,6 +40,12 @@ public class CrispsItem extends StockItem {
 		return $newID;
 	}
 	
+	public CrispsItem () {
+		$baked = false;
+		$bagOunce = 0;
+		$newID = "";
+	}
+	
 	public CrispsItem(String _brandName, String _description, Double _price, int _bagOunce, boolean
 			_baked) {
 		super(_brandName, _description, _price);
