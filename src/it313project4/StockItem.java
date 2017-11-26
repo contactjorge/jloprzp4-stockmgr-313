@@ -80,6 +80,7 @@ public class StockItem {
 		$description = "";
 		$price = 0.0;
 	}
+	
 	/**
 	 *
 	 * @param _brandName

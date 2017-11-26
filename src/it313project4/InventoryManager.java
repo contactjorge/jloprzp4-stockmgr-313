@@ -10,20 +10,18 @@ package it313project4;
 
 import java.util.ArrayList;
 
-
 public class InventoryManager {
 	private static final long $serialVersionUID = 4L;
 	private ArrayList<StockItem> $col = new ArrayList<>(); //$col instance variable for the collection of Stock
+	private StockItem $item = new StockItem(); //$col instance variable for the collection of Stock
 	
 	private void setCollection (ArrayList<StockItem> $col) {
 		this.$col = $col; //mutator for the $col instance variable
 	}
-	//done
 	
 	private ArrayList<StockItem> setCollection () {
 		return $col; //getter for the $col instance variable
 	}
-	//done
 	
 	private boolean find (String theBrand) {
 		
@@ -37,8 +35,6 @@ public class InventoryManager {
 		}
 		return false;
 	}
-	//not tested
-
 	
 	private void displayItem (StockItem the_item) {
 		//Display Quantity of Stock Items
@@ -60,26 +56,23 @@ public class InventoryManager {
 		}
 		
 	}
-	//done
 
-private String getItembyID (StockItem purchasedItem) {
-	
-	StockItem pItem = purchasedItem;
-	String itemID = purchasedItem.get_id();
-	for (int i = 0; i < this.$col.size(); i++)
-	{
-		if ( itemID == pItem.get_id() )
-		{
-			System.out.println(this.$col.size());
-			System.out.println(itemID);
-			System.out.println(pItem.get_id());
-			System.out.println(i);
-			return itemID;
-		}
+	private String getItembyID (StockItem purchasedItem) {
+		StockItem pItem = purchasedItem;
+		String itemID = purchasedItem.get_id();
+		for (int i = 0; i < this.$col.size(); i++)
+			{
+				if ( itemID == pItem.get_id() )
+				{
+					System.out.println(this.$col.size());
+					System.out.println(itemID);
+					System.out.println(pItem.get_id());
+					System.out.println(i);
+					return itemID;
+					}
+			}
+		return "Not found";
 	}
-	return "Not found";
-}
-	//not tested
 	
 	private void addItem (StockItem the_purchasedItem, int quantity) {
 		// Add current message to beginning of archive.
@@ -90,33 +83,56 @@ private String getItembyID (StockItem purchasedItem) {
 			i++;
 		}
 	}
-	//done
 	
 	private void removeItem (StockItem purchasedItem, int itemQuantity) {
-		
+		// Add current message to beginning of archive.
 		ArrayList<StockItem> collection = this.$col;
-		
 		String itemID = getItembyID(purchasedItem);
 		
 		for ( int i = 0; i < itemQuantity; i++)
 		{
 			if ( itemID == purchasedItem.get_id() )
 			{
-			collection.remove(i);
+				collection.remove(i);
 			}
 		}
-		 //return the$collection;
 	}
-	//not tested
+	
+	public void newItems () {
+		
+		System.out.println("Initializing Items to the inventory:");
+		
+		CandyBarItem peanutMMS = new CandyBarItem("MMS Peanut", "MARS M&M's Flagship", 0.5, 12, true, true);
+		System.out.println("Initializing Peanut M&M's...");
+		
+		CandyBarItem hersheyAlmond = new CandyBarItem("Hershey's Almond", "Hershey's Almond Bar", 0.45, 2, true, true);
+		System.out.println("Initializing Hershey's Almond...");
+		
+		CandyBarItem starBurst = new CandyBarItem("Starburst", "StarBurst Fruit Chews", 0.55, 2, false, false);
+		System.out.println("Initializing StarBurst...");
+		
+		SodaWaterItem coke = new SodaWaterItem("Coke", "Coca-Cola", 12, 0.40, true, true);
+		System.out.println("Initializing Coke...");
+		
+		SodaWaterItem cokeDiet = new SodaWaterItem("Coke Diet", "Coca-Cola", 12, 0.40, true, true);
+		System.out.println("Initializing Diet Coke...");
+		
+		SodaWaterItem sprite = new SodaWaterItem("Sprite", "Lemon Lime Soda", 12, 0.40, true, true);
+		System.out.println("Initializing Sprite...");
+		
+		CrispsItem laysFried = new CrispsItem("Lay's Potato Chips", "Lay's Potato Chips", 0.70, 16,	false);
+		System.out.println("Initializing Lay's chips...");
+		
+		CrispsItem laysBaked = new CrispsItem("Lay's Baked Potato Chips", "Lay's Baked Potato Chips", 0.70, 16, true);
+		System.out.println("Initializing Lay's Baked Chips...");
+		
+		CrispsItem doritos = new CrispsItem("Doritos Corn Chips", "Doritos Corn Chips", 0.70, 16, true);
+		System.out.println("Initializing Doritos...");
+		
+	}
 	
 	public InventoryManager () {
-		
-		ArrayList<StockItem> itemCollection = new ArrayList<>();
-		
-		//InventoryManager inventoryManager = new InventoryManager();
-		
-		//Inventory inventory = new Inventory();
-
+		newItems();
 		displayAll();
 	}
 	
