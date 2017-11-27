@@ -1,9 +1,28 @@
 package it313project4;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ManagerInterface {
-
+	
+	private void addMore(StockItem item){
+		
+		Scanner mgrInputAdd = new Scanner(System.in);
+		String option;
+		
+		do {
+			System.out.println("How much would you like to add?");
+			System.out.print("Type (b) for previous menu: ");
+			
+			option = mgrInputAdd.nextLine();
+			
+			if ()
+			
+		} while (option != "b");
+		mgrInputAdd.close();
+		startInterface();
+	}
+	
 	public void addStock () {
 		
 		Scanner mgrInputAdd = new Scanner(System.in);
@@ -25,7 +44,7 @@ public class ManagerInterface {
 			option = mgrInputAdd.nextInt();
 			
 			switch (option) {
-				case 1 : option = 1; break;
+				case 1 : option = 1; addMore(); break;
 				case 2 : option = 2; break;
 				case 3 : option = 3; break;
 				case 4 : option = 4; break;
@@ -164,9 +183,8 @@ public class ManagerInterface {
 		
 		do {
 			System.out.println("Duty free inventory");
-			System.out.println("Press (1) to enter a new item.");
-			System.out.println("Press (2) to add quantity of an item.");
-			System.out.println("Press (3) to remove an item.");
+			System.out.println("Press (1) to add quantity of an item.");
+			System.out.println("Press (2) to remove an item.");
 			System.out.println("Press (4) to find an item.");
 			System.out.println("Press (5) to display all items.");
 			System.out.print("Press (9) to quit.\n");
@@ -194,6 +212,13 @@ public class ManagerInterface {
 	
 	public void ManagerInterface() {
 		startInterface();
+	}
+	
+	public void ManagerInterface(ArrayList<StockItem> collection){
+		ArrayList<StockItem> col = collection;
+		startInterface();
+		
+		
 	}
 }
 

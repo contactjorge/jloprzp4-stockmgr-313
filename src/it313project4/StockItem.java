@@ -18,7 +18,7 @@ public class StockItem {
 	public void set_id () {
 		this.$id= "SN";
 	}
-	
+	/*
 	private void setBrandName(String _brandName) {
 		this.$brandName = _brandName;
 	}
@@ -35,14 +35,6 @@ public class StockItem {
 		this.$quantity = _quantity;
 	}
 	
-	public String get_id() {
-		return $id;
-	}
-	
-	public String get_brandName() {
-		return $brandName;
-	}
-	
 	private String get_description() {
 		return $description;
 	}
@@ -50,9 +42,17 @@ public class StockItem {
 	private Double get_price() {
 		return $price;
 	}
-
+	
 	private int get_quantity() {
 		return $quantity;
+	}
+	*/
+	public String get_id() {
+		return $id;
+	}
+	
+	public String get_brandName() {
+		return $brandName;
 	}
 	
 	public int	known_quantity() {
