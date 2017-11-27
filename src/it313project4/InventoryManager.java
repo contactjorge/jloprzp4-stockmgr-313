@@ -12,140 +12,110 @@ import java.util.ArrayList;
 
 public class InventoryManager {
 	private static final long $serialVersionUID = 4L;
-	private ArrayList<StockItem> $col = new ArrayList<>(); //$col instance variable for the collection of Stock
-	private StockItem $item = new StockItem(); //$col instance variable for the collection of Stock
+	private ArrayList<StockItem> $col;// = new ArrayList<>(); //$col instance variable for the collection of Stock
+	private ArrayList<StockItem> $baseCol;// = new ArrayList<>(); //$col instance variable for the collection of Stock
 	
-	private void setCollection (ArrayList<StockItem> $col) {
-		this.$col = $col; //mutator for the $col instance variable
+	private ArrayList<StockItem> newItems (ArrayList<StockItem> collection) {
+		ArrayList<StockItem> thisCol = new ArrayList<>();
+		
+		CandyBarItem peanutMMS = new CandyBarItem("MMS Peanut", "MARS M&M's Flagship", 0.5, 12, true, true); //Instantiate
+		CandyBarItem hersheyAlmond = new CandyBarItem("Hershey's Almond", "Hershey's Almond Bar", 0.45, 2, true, true); //Instantiate
+		CandyBarItem starBurst = new CandyBarItem("Starburst", "StarBurst Fruit Chews", 0.55, 2, false, false); //Instantiate
+		SodaWaterItem coke = new SodaWaterItem("Coke", "Coca-Cola", 12, 0.40, true, true); //Instantiate
+		SodaWaterItem cokeDiet = new SodaWaterItem("Coke Diet", "Coca-Cola", 12, 0.40, true, true); //Instantiate
+		SodaWaterItem sprite = new SodaWaterItem("Sprite", "Lemon Lime Soda", 12, 0.40, true, true); //Instantiate
+		CrispsItem laysFried = new CrispsItem("Lay's Potato Chips", "Lay's Potato Chips", 0.70, 16,	false); //Instantiate
+		CrispsItem laysBaked = new CrispsItem("Lay's Baked Potato Chips", "Lay's Baked Potato Chips", 0.70, 16, true); //Instantiate
+		CrispsItem doritos = new CrispsItem("Doritos Corn Chips", "Doritos Corn Chips", 0.70, 16, true); //Instantiate
+		
+		thisCol.add(peanutMMS);//add to collection
+		thisCol.add(hersheyAlmond); //add to collection
+		thisCol.add(starBurst); //add to collection
+		thisCol.add(coke); //add to collection
+		thisCol.add(cokeDiet); //add to collection
+		thisCol.add(sprite); //add to collection
+		thisCol.add(laysFried); //add to collection
+		thisCol.add(laysBaked); //add to collection
+		thisCol.add(doritos); //add to collection
+		
+		return thisCol;
 	}
 	
-	private ArrayList<StockItem> getCollection () {
-		return $col; //getter for the $col instance variable
+	private void setCol (ArrayList<StockItem> $col) {
+		this.$col= $col;
 	}
 	
-	private boolean find (String theBrand) {
-		//Loop until the length of the array
-		for(StockItem item : this.$col)
+	public void setBaseCol (ArrayList<StockItem> $baseCol) {
+		this.$baseCol = new ArrayList<>(this.$col);
+	}
+	
+	private StockItem findItembyID (StockItem selectedItem) {
+		
+		StockItem findItem = selectedItem;
+		String itemID = findItem.get_id();
+		
+		for (int i = 0; i < $col.size(); i++)
 		{
-			if (item.get_brandName().equalsIgnoreCase( theBrand ) && item.known_quantity() > 0)
+			if ( itemID == findItem.get_id() )
 			{
-				return true;
+				return findItem;
 			}
 		}
-		return false;
-	}
-	
-	private void displayItem (StockItem the_item) {
-		//Display Quantity of Stock Items
-		int count = 0;
-		for (StockItem item : $col) {
-			if (find(the_item.get_brandName())) {
-				count++;
-			}
-		}
-		
-		System.out.print(count);
-		System.out.print("There are " + count + " " + the_item);
-	}
-	
-	private void displayAll () {
-		//Display All Stock Items
-		for(StockItem the_item : $col) {
-			System.out.println(the_item);
-		}
-		
-	}
-
-	private String findItembyID (StockItem purchasedItem) {
-		StockItem pItem = purchasedItem;
-		String itemID = purchasedItem.get_id();
-		for (int i = 0; i < this.$col.size(); i++)
-			{
-				if ( itemID == pItem.get_id() )
-				{
-					System.out.println(this.$col.size());
-					System.out.println(itemID);
-					System.out.println(pItem.get_id());
-					System.out.println(i);
-					return itemID;
-					}
-			}
-		return "Not found";
+		return selectedItem;
 	}
 	
 	private void addItem (StockItem purchasedItem, int quantity) {
 		// Add current message to beginning of archive.
-		ArrayList<StockItem> collection = this.$col;
-		String itemID = findItembyID(purchasedItem);
 		
-		System.out.println("How many " + purchasedItem + "\'s would you like to add?");
+		StockItem selectItem = findItembyID(purchasedItem);
+		
+		System.out.println("\nAdding " + quantity + " " + selectItem.get_brandName() + ".\n");
 		int i = 0;
 		while (i < quantity ) {
-			purchasedItem.addByOne();
-			this.$col.add(purchasedItem);
+			selectItem.addByOne();
+			this.$col.add(selectItem);
 			i++;
 		}
 	}
 	
-	private void removeItem (StockItem purchasedItem, int itemQuantity) {
+	private void removeItem (StockItem purchasedItem, int quantity) {
 		// Add current message to beginning of archive.
-		ArrayList<StockItem> collection = this.$col;
-		String itemID = findItembyID(purchasedItem);
-		
-		for ( int i = 0; i < itemQuantity; i++)
+		StockItem selectItem = findItembyID(purchasedItem);
+		System.out.println("Removing " + quantity + " " + selectItem + "\'s.");
+		for ( int i = 0; i < quantity; i++)
 		{
-			if ( itemID == purchasedItem.get_id() )
+			if ( selectItem.get_id() == purchasedItem.get_id() )
 			{
-				collection.remove(i);
+				this.$col.remove(i);
 			}
 		}
 	}
 	
-	public void newItems () {
+	private void displayAll () {
+		//Display All Stock Items
 		
-		System.out.println("Initializing Items to the inventory:"); //Greeting message
+		System.out.println("All Items");
+		System.out.println("----------");
+		StockItem item = new StockItem();
+		int itemCount = 0;
+		int itemQuantity = 0;
+		//System.out.println(this.$baseCol.size());
 		
-		CandyBarItem peanutMMS = new CandyBarItem("MMS Peanut", "MARS M&M's Flagship", 0.5, 12, true, true); //Instantiate
-		this.$col.add(peanutMMS); //add to collection
-		System.out.println("Initializing Peanut M&M's..."); //Show init printout
-		
-		CandyBarItem hersheyAlmond = new CandyBarItem("Hershey's Almond", "Hershey's Almond Bar", 0.45, 2, true, true); //Instantiate
-		this.$col.add(hersheyAlmond); //add to collection
-		System.out.println("Initializing Hershey's Almond..."); //Show init printout
-		
-		CandyBarItem starBurst = new CandyBarItem("Starburst", "StarBurst Fruit Chews", 0.55, 2, false, false); //Instantiate
-		this.$col.add(starBurst); //add to collection
-		System.out.println("Initializing StarBurst..."); //Show init printout
-		
-		SodaWaterItem coke = new SodaWaterItem("Coke", "Coca-Cola", 12, 0.40, true, true); //Instantiate
-		this.$col.add(coke); //add to collection
-		System.out.println("Initializing Coke..."); //Show init printout
-		
-		SodaWaterItem cokeDiet = new SodaWaterItem("Coke Diet", "Coca-Cola", 12, 0.40, true, true); //Instantiate
-		this.$col.add(cokeDiet); //add to collection
-		System.out.println("Initializing Diet Coke..."); //Show init printout
-		
-		SodaWaterItem sprite = new SodaWaterItem("Sprite", "Lemon Lime Soda", 12, 0.40, true, true); //Instantiate
-		this.$col.add(sprite); //add to collection
-		System.out.println("Initializing Sprite..."); //Show init printout
-		
-		CrispsItem laysFried = new CrispsItem("Lay's Potato Chips", "Lay's Potato Chips", 0.70, 16,	false); //Instantiate
-		this.$col.add(laysFried); //add to collection
-		System.out.println("Initializing Lay's chips..."); //Show init printout
-		
-		CrispsItem laysBaked = new CrispsItem("Lay's Baked Potato Chips", "Lay's Baked Potato Chips", 0.70, 16, true); //Instantiate
-		this.$col.add(laysBaked); //add to collection
-		System.out.println("Initializing Lay's Baked Chips..."); //Show init printout
-		
-		CrispsItem doritos = new CrispsItem("Doritos Corn Chips", "Doritos Corn Chips", 0.70, 16, true); //Instantiate
-		this.$col.add(doritos); //add to collection
-		System.out.println("Initializing Doritos..."); //Show init printout
+		for (int c = 0; c < this.$baseCol.size(); c++) {
+			item = findItembyID(this.$col.get(c));
+			if (item.known_quantity() > 0) {
+				System.out.println(item.display());
+				itemCount++;
+				itemQuantity = itemQuantity + item.known_quantity();
+			}
+		}
+		System.out.println("Individual stock items: " + itemCount);
+		System.out.println("Total items in stock: " + itemQuantity);
 	}
 	
 	public InventoryManager () {
-		newItems();
-		displayAll();
-		
+		//ArrayList<StockItem> collection = new ArrayList<>();
+
 	}
 	
 	@Override

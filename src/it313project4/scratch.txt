@@ -47,3 +47,179 @@
 		System.out.println("Do you have lays? " + this.find(laysLot));
 		System.out.println("Do you have Coke? " + this.find(cokeLot));
 		System.out.println("Do you have CB001? " + this.getItembyID( "001"));
+
+
+		private ArrayList<StockItem> newItems (ArrayList<StockItem> collection) {
+        		ArrayList<StockItem> thisCol = new ArrayList<>();
+
+        		CandyBarItem peanutMMS = new CandyBarItem("MMS Peanut", "MARS M&M's Flagship", 0.5, 12, true, true); //Instantiate
+        		CandyBarItem hersheyAlmond = new CandyBarItem("Hershey's Almond", "Hershey's Almond Bar", 0.45, 2, true, true); //Instantiate
+        		CandyBarItem starBurst = new CandyBarItem("Starburst", "StarBurst Fruit Chews", 0.55, 2, false, false); //Instantiate
+        		SodaWaterItem coke = new SodaWaterItem("Coke", "Coca-Cola", 12, 0.40, true, true); //Instantiate
+        		SodaWaterItem cokeDiet = new SodaWaterItem("Coke Diet", "Coca-Cola", 12, 0.40, true, true); //Instantiate
+        		SodaWaterItem sprite = new SodaWaterItem("Sprite", "Lemon Lime Soda", 12, 0.40, true, true); //Instantiate
+        		CrispsItem laysFried = new CrispsItem("Lay's Potato Chips", "Lay's Potato Chips", 0.70, 16,	false); //Instantiate
+        		CrispsItem laysBaked = new CrispsItem("Lay's Baked Potato Chips", "Lay's Baked Potato Chips", 0.70, 16, true); //Instantiate
+        		CrispsItem doritos = new CrispsItem("Doritos Corn Chips", "Doritos Corn Chips", 0.70, 16, true); //Instantiate
+
+        		thisCol.add(peanutMMS);//add to collection
+        		thisCol.add(hersheyAlmond); //add to collection
+        		thisCol.add(starBurst); //add to collection
+        		thisCol.add(coke); //add to collection
+        		thisCol.add(cokeDiet); //add to collection
+        		thisCol.add(sprite); //add to collection
+        		thisCol.add(laysFried); //add to collection
+        		thisCol.add(laysBaked); //add to collection
+        		thisCol.add(doritos); //add to collection
+
+        		return thisCol;
+        	}
+
+        	public void firstInterface() {
+        		int mgrOption = 0;
+        		Scanner mgrInput = new Scanner(System.in);
+
+        		System.out.println("Duty free inventory");
+        		System.out.println("Press (1) to add quantity of an item.");
+        		System.out.println("Press (2) to remove an item.");
+        		System.out.println("Press (3) to find an item.");
+        		System.out.println("Press (4) to display all items.");
+        		System.out.print("Press (0) to quit.\n");
+
+        		while (mgrInput.hasNextInt()){
+        			mgrOption = mgrInput.nextInt();
+
+        			switch (mgrOption) {
+        				case 1: secondInterface("Add"); break;
+        				case 2: secondInterface("Remove"); break;
+        				case 3: secondInterface("Find"); break;
+        				case 4: displayAll(); break;
+        			}
+        		}
+        	}
+
+        	private void secondInterface (String action) {
+        		universalPromptInterface(action);
+        	}
+
+        	private void universalPromptInterface (String action)
+        	{
+        		int option = 0;
+        		int selection = 0;
+        		StockItem item = new StockItem();
+        		Scanner mgrInputAdd = new Scanner(System.in);
+
+
+        		if (action == "Add") {
+        			System.out.println("Add an item to the inventory:");
+        		} else if (action == "Remove") {
+        			System.out.println("Remove an item to the inventory:");
+        		} else if (action == "Delete") {
+        			System.out.println("Delete an item From the inventory:");
+        		} else {
+        			System.out.println("Find an item in the inventory:");
+        		}
+
+        		for (int i = 0; i < this.$baseCol.size(); i++) {
+        			selection = i + 1;
+        			System.out.println("Press (" + selection + ") for " + this.$baseCol.get(i).get_brandName() + "." );
+        		}
+        		System.out.print("Press (0) to go back\n");
+
+        		do {
+        			if( mgrInputAdd.hasNextInt() ) {
+        				option = mgrInputAdd.nextInt();
+        				if (option > 0 && option < selection + 1) {
+        					int opt = option - 1;
+        					item = this.$col.get(opt);
+
+        					switch (action) {
+        						case "Add" : changeStock(action, findItembyID( item )); break;
+        						case "Remove" : changeStock(action, findItembyID( item )); break;
+        						case "Find" : findDisplayStock(action, findItembyID( item )); break;
+        						case "Display" : displayAll(); break;
+        					}
+        				} else if (option > selection){
+        					System.out.print("Invalid number selection\nPlease try again\n");
+        				}
+        			} else {
+        				System.out.print("Enter numbers only\n");
+        			}
+        		} while (option > 0);
+
+        		mgrInputAdd.close();
+        		secondInterface(action);
+        	}
+
+        	private void changeStock( String action, StockItem theItem ){
+
+        		int mgrOptionChange = 0;
+        		Scanner mgrInputChange = new Scanner(System.in);
+        		StockItem item = theItem;
+
+        		System.out.print("How many " + item.get_brandName() + "s would you like to " + action + "?\n" );
+
+        		if( mgrInputChange.hasNextInt() )
+        	 	{
+        		    mgrOptionChange = mgrInputChange.nextInt();
+        			if (action == "Add") {
+        				addItem(item, mgrOptionChange);
+        			} else {
+        				if (item.known_quantity() > 0 ){
+        					removeItem(item, mgrOptionChange);
+        				} else {
+        					System.out.print("There are no " + item.get_brandName() + " items in stock at this time.\n");
+        					secondInterface(action);
+        				}
+        			}
+        		} else {
+        			System.out.print("Invalid number selection. Please try again\n");
+        			secondInterface(action);
+        		}
+
+        		secondInterface(action);
+        	}
+        	/*
+        	private void changeStock( String action, StockItem theItem ){
+        		int mgrOptionQty = 0;
+        		Scanner mgrInputQty = new Scanner(System.in);
+        		StockItem item = theItem;
+
+        		if( mgrInputQty.hasNextInt() ) {
+        			mgrOptionQty = mgrInputQty.nextInt();
+        			if (action == "Add") {
+        				addItem(item, mgrOptionQty);
+        			} else if (action == "Remove"){
+        				if (item.known_quantity() > 0 ){
+        					removeItem(item, mgrOptionQty);
+        				} else {
+        					System.out.println("\nThere are no " + item.get_brandName() + " items in stock at this time.\n \n");
+        					mgrInputQty.close();
+        					firstInterface();
+        				}
+        			} else {
+        				System.out.println("\nInvalid number selection\nPlease try again\n");
+        				mgrInputQty.close();
+        				firstInterface();
+        			}
+        		}
+        		mgrInputQty.close();
+        		firstInterface();
+        	}*/
+
+        	private void findDisplayStock(String action, StockItem item) {
+
+        		if (action == "Find") {
+        			if (item.known_quantity() > 0) {
+        				System.out.println("\nYou've selected the following item: " + findItembyID(item).get_brandName() + ".");
+        				System.out.println("===========================================");
+        				System.out.print(findItembyID(item) + "\n");
+        			} else {
+        				System.out.print( "\nThere are no " + item.get_brandName() + " items in the inventory.\n" );
+        			}
+        		} else if (action == "Display") {
+        			displayAll();
+        			System.out.print("\n");
+        		}
+        		secondInterface(action);
+        	}
