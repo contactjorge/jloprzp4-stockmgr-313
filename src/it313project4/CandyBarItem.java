@@ -8,6 +8,9 @@
  **/
 package it313project4;
 
+/**
+ * Candybar Item child of Item
+ */
 public class CandyBarItem extends StockItem {
 	private int $barOunce;
 	private boolean $chocolate;
@@ -59,6 +62,9 @@ public class CandyBarItem extends StockItem {
 		return $newID;
 	}
 	
+	/**
+	 * NoArg constructor
+	 */
 	public CandyBarItem () {
 		$barOunce = 0;
 		$chocolate = false;
@@ -66,6 +72,15 @@ public class CandyBarItem extends StockItem {
 		$newID = "";
 	}
 	
+	/**
+	 * Constructor with Arguments
+	 * @param _brandName
+	 * @param _description
+	 * @param _price
+	 * @param _barOunce
+	 * @param _nuts
+	 * @param _chocolate
+	 */
 	public CandyBarItem(String _brandName, String _description, Double _price, int _barOunce, boolean _nuts, boolean
 			_chocolate) {
 		super(_brandName, _description, _price);

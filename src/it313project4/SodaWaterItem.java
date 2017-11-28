@@ -14,30 +14,57 @@ public class SodaWaterItem extends StockItem{
 	private boolean $sweetened;
 	private String $newID;
 	
+	/**
+	 * Not used according to IntellijIdea
+	 * @return $caffeine
+	 */
 	private boolean is_caffeine() {
 		return $caffeine;
 	}
 	
+	/**
+	 * Setter for caffeine. Not used according to IntellijIdea
+	 * @param _caffeine
+	 */
 	private void set_caffeine(boolean _caffeine) {
 		this.$caffeine = _caffeine;
 	}
 	
+	/**
+	 * Getter for sweetened. Not used according to IntellijIdea
+	 * @return $sweetened
+	 */
 	private boolean is_sweetened() {
 		return $sweetened;
 	}
 	
+	/**
+	 * Setter for sweetened. Not used according to intelliJIdea
+	 * @param _sweetened
+	 */
 	private void set_sweetened(boolean _sweetened) {
 		this.$sweetened = _sweetened;
 	}
 	
+	/**
+ 	 * Setter for $fluidOunce. Not used according to intelliJIdea
+	 * @return $fluidOunce
+	 */
 	private int get_fluidOunce() {
 		return $fluidOunce;
 	}
 	
+	/**
+	 * setter for $fluidOunce. Not used according to intelliJIdea
+	 * @param _fluidOunce
+	 */
 	private void set_fluidOunce(int _fluidOunce) {
 		this.$fluidOunce = _fluidOunce;
 	}
 	
+	/**
+	 *  @return returns a custom prefix for the id to create a new id.
+	 */
 	private String prefix_id() {
 		String prefix1 = "SW.";
 		String prefix2 = "";
@@ -58,6 +85,9 @@ public class SodaWaterItem extends StockItem{
 		return $newID;
 	}
 	
+	/**
+	 * Noarg constructor method
+	 */
 	public SodaWaterItem () {
 		$caffeine = false;
 		$sweetened = false;
@@ -65,6 +95,15 @@ public class SodaWaterItem extends StockItem{
 		$newID = "";
 	}
 	
+	/**
+	 * Method for child object with constructor.
+	 * @param _brandName
+	 * @param _description
+	 * @param _fluidOunce
+	 * @param _price
+	 * @param _caffeine
+	 * @param _sweetened
+	 */
 	public SodaWaterItem(String _brandName, String _description, int _fluidOunce, Double _price, boolean
 			_caffeine, boolean _sweetened) {
 		super(_brandName, _description, _price);

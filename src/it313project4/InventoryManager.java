@@ -11,6 +11,17 @@ package it313project4;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Inventory Manager
+ * All methods tested by hand
+ * Methods ran through "User interface" still do not work.
+ * Incomplete is the remove method. Was working then stopped.
+ * Attempted to use the Observer Observable design pattern
+ * Took a test this summer for a job using Subject-Observer design pattern
+ * Did well on the PHP version but running into issue with the Java implementation.
+ * Will be seeking further Software engineering courses to keep learning.
+ * Design patterns are certainly being requested during job interviews.
+ */
 public class InventoryManager {
 	private static final long $serialVersionUID = 4L;
 	private ArrayList<StockItem> $col;// = new ArrayList<>(); //$col instance variable for the collection of Stock
@@ -28,6 +39,15 @@ public class InventoryManager {
 		this.$baseCol = new ArrayList<>(this.$col);
 	}
 	
+	/**
+	 * Manually instantiationg objects into collection
+	 * @param collection
+	 * @return collection
+	 * Used in $col and $baseCol. The idea with $baseCol was to have a placeholder collection
+	 * with instantiated objects and zero qty. Felt it was easier to find objects
+	 * as well as create a menu of basic items.
+	 * $col is the main collection that will have items added to it.
+	 */
 	private ArrayList<StockItem> newItems (ArrayList<StockItem> collection) {
 		ArrayList<StockItem> thisCol = new ArrayList<>();
 		
@@ -54,6 +74,9 @@ public class InventoryManager {
 		return thisCol;
 	}
 	
+	/**
+	 * This was meant to be the interface that kicks off the user guided menu
+	 */
 	public void firstInterface() {
 		int mgrOption = 0;
 		Scanner mgrInput = new Scanner(System.in);
@@ -84,6 +107,12 @@ public class InventoryManager {
 		}
 	}
 	
+	/**
+	 * If user selects to add items then this method adds the items
+	 * It stopped working as the app became more complex
+	 * Made this a method that manually adds 48 items when called.
+	 *
+	 */
 	private void addStock () {
 		StockItem theItem = new StockItem();
 		for (int i=0; i < this.$baseCol.size(); i++) {
@@ -94,6 +123,12 @@ public class InventoryManager {
 		firstInterface();
 	}
 	
+	/**
+	 * User would be able to choose to remove items from stock
+	 * number of items would then be passed to a removeItem method.
+	 * this stopped working so I moved the algorithm into this method
+	 * hoping to fix. Was unable to fix.
+	 */
 	private void removeStock () {
 		int itemQty = 0;
 		int deleteItem = 0;
@@ -140,6 +175,10 @@ public class InventoryManager {
 		firstInterface();
 	}
 	
+	/**
+	 * Finds the stock. Was working but may have stopped as the application
+	 * grew more complex
+	 */
 	private void findStock() {
 		int selection = 0;
 		StockItem item = new StockItem();
@@ -159,6 +198,11 @@ public class InventoryManager {
 		}
 	}
 	
+	/**
+	 * @param selectedItem
+	 * @return returns the item found by ID
+	 * Works!
+	 */
 	private StockItem findItembyID (StockItem selectedItem) {
 		
 		StockItem findItem = selectedItem;
@@ -174,6 +218,14 @@ public class InventoryManager {
 		return selectedItem;
 	}
 	
+	/**
+	 * This works and adds the item to the collection
+	 * then updates quantity to the items using item's method.
+	 * Have a similar method to remove and was using that with removeItem()
+	 * That method stopped working
+	 * @param purchasedItem
+	 * @param quantity
+	 */
 	private void addItem (StockItem purchasedItem, int quantity) {
 		// Add current message to beginning of archive.
 		
@@ -188,6 +240,10 @@ public class InventoryManager {
 		}
 	}
 	
+	/**
+	 * Displays all items in the collection
+	 * tested and works
+	 */
 	private void displayAll () {
 		//Display All Stock Items
 		
@@ -211,6 +267,11 @@ public class InventoryManager {
 		firstInterface();
 	}
 	
+	/**
+	 * NoArg constructor. Not sure if I needs to have a similar one with constuctors.
+	 *
+	 *
+	 */
 	public InventoryManager () {
 		this.$col = newItems($col);;
 		this.$baseCol = newItems($baseCol);

@@ -33,6 +33,10 @@ public class CrispsItem extends StockItem {
 	
 	private boolean is_baked() { return $baked; }
 	
+	/**
+	 * @param brand
+	 * @return prefix for new id
+	 */
 	public String prefix_id(String brand) {
 		String prefix1 = "CP.";
 		String prefix2 = "";
