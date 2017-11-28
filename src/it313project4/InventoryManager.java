@@ -9,11 +9,24 @@
 package it313project4;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class InventoryManager {
 	private static final long $serialVersionUID = 4L;
 	private ArrayList<StockItem> $col;// = new ArrayList<>(); //$col instance variable for the collection of Stock
 	private ArrayList<StockItem> $baseCol;// = new ArrayList<>(); //$col instance variable for the collection of Stock
+	
+	private void setCol (ArrayList<StockItem> $col) {
+		this.$col= $col;
+	}
+	
+	public ArrayList<StockItem> getCol () {
+		return $col;
+	}
+	
+	public void setBaseCol (ArrayList<StockItem> $baseCol) {
+		this.$baseCol = new ArrayList<>(this.$col);
+	}
 	
 	private ArrayList<StockItem> newItems (ArrayList<StockItem> collection) {
 		ArrayList<StockItem> thisCol = new ArrayList<>();
@@ -41,12 +54,109 @@ public class InventoryManager {
 		return thisCol;
 	}
 	
-	private void setCol (ArrayList<StockItem> $col) {
-		this.$col= $col;
+	public void firstInterface() {
+		int mgrOption = 0;
+		Scanner mgrInput = new Scanner(System.in);
+		
+		System.out.println("Stock inventory manager");
+		System.out.println("Press (1) to add 48 quantity to all items.");
+		System.out.println("Press (2) to remove an item.");
+		System.out.println("Press (3) to find an item.");
+		System.out.println("Press (4) to display all items.");
+		System.out.print("Press (0) to quit.\n");
+		
+		if( mgrInput.hasNextInt() ) {
+			mgrOption=mgrInput.nextInt();
+			
+			if (mgrOption == 1) {
+				addStock();
+			} else if (mgrOption == 2) {
+				removeStock();
+			} else if (mgrOption == 3) {
+				findStock();
+			} else if (mgrOption == 4) {
+				displayAll();
+			} else if (mgrOption == 0) {
+				mgrInput.hasNext();
+			}
+		} else{
+				System.out.println("\nInvalid number selection\nPlease try again\n");
+		}
 	}
 	
-	public void setBaseCol (ArrayList<StockItem> $baseCol) {
-		this.$baseCol = new ArrayList<>(this.$col);
+	private void addStock () {
+		StockItem theItem = new StockItem();
+		for (int i=0; i < this.$baseCol.size(); i++) {
+			theItem = this.$col.get(i);
+			addItem(theItem, 48);
+		}
+		
+		firstInterface();
+	}
+	
+	private void removeStock () {
+		int itemQty = 0;
+		int deleteItem = 0;
+		int selection = 0;
+		StockItem item = new StockItem();
+		Scanner mgrInputItem = new Scanner(System.in); //scanner to determine Item to change
+		Scanner mgrInputQty = new Scanner(System.in);
+		
+		//Get the base collection to print out prompts
+		for (int i = 0; i < this.$baseCol.size(); i++) {
+			selection = i + 1;
+			System.out.println("Press (" + selection + ") for " + this.$baseCol.get(i).get_brandName() + "." );
+		}
+		System.out.print("Press (0) to go back\n");
+		
+		//Collect the users input
+		if( mgrInputItem.hasNextInt() ) {
+			deleteItem = mgrInputItem.nextInt();
+			System.out.println(deleteItem);
+		} else {
+			System.out.println("\nInvalid number selection\nPlease try again\n");
+		}
+		
+		int opt = deleteItem - 1;
+		item = this.$col.get(opt);
+		
+		System.out.print("How many " + item.get_brandName() + "s would you like to remove?\n" );
+		
+		if( mgrInputQty.hasNextInt() ) {
+			itemQty = mgrInputQty.nextInt();
+			if (item.known_quantity() > 0 ){
+				int i = 1;
+				while (i < itemQty){
+					item.removeByOne();
+					i++;
+				}
+				System.out.print(itemQty + " " + item.get_brandName() + "Removed.\n");
+			} else {
+				System.out.println("\nThere are no " + item.get_brandName() + " items in stock at this time.\n \n");
+			}
+		} else {
+			System.out.print("Enter numbers only\n");
+		}
+		firstInterface();
+	}
+	
+	private void findStock() {
+		int selection = 0;
+		StockItem item = new StockItem();
+		
+		//Get the base collection to print out prompts
+		for (int i = 0; i < this.$baseCol.size(); i++) {
+			selection = i + 1;
+			System.out.println("Press (" + selection + ") for " + this.$baseCol.get(i).get_brandName() + "." );
+		}
+		System.out.print("Press (0) to go back\n");
+		if (item.known_quantity() > 0) {
+			System.out.println("\nYou've selected the following item: " + findItembyID(item).get_brandName() + ".");
+			System.out.println("===========================================");
+			System.out.print(findItembyID(item) + "\n");
+		} else {
+			System.out.print( "\nThere are no " + item.get_brandName() + " items in the inventory.\n" );
+		}
 	}
 	
 	private StockItem findItembyID (StockItem selectedItem) {
@@ -69,25 +179,12 @@ public class InventoryManager {
 		
 		StockItem selectItem = findItembyID(purchasedItem);
 		
-		System.out.println("\nAdding " + quantity + " " + selectItem.get_brandName() + ".\n");
+		System.out.print("Adding " + quantity + " " + selectItem.get_brandName() + ".\n");
 		int i = 0;
 		while (i < quantity ) {
 			selectItem.addByOne();
 			this.$col.add(selectItem);
 			i++;
-		}
-	}
-	
-	private void removeItem (StockItem purchasedItem, int quantity) {
-		// Add current message to beginning of archive.
-		StockItem selectItem = findItembyID(purchasedItem);
-		System.out.println("Removing " + quantity + " " + selectItem + "\'s.");
-		for ( int i = 0; i < quantity; i++)
-		{
-			if ( selectItem.get_id() == purchasedItem.get_id() )
-			{
-				this.$col.remove(i);
-			}
 		}
 	}
 	
@@ -111,11 +208,13 @@ public class InventoryManager {
 		}
 		System.out.println("Individual stock items: " + itemCount);
 		System.out.println("Total items in stock: " + itemQuantity);
+		firstInterface();
 	}
 	
 	public InventoryManager () {
-		//ArrayList<StockItem> collection = new ArrayList<>();
-
+		this.$col = newItems($col);;
+		this.$baseCol = newItems($baseCol);
+		
 	}
 	
 	@Override
