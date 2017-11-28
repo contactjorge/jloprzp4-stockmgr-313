@@ -8,11 +8,17 @@
  **/
 package it313project4;
 
+/**
+ * Sub class for Item based on chips or crisps
+ */
 public class CrispsItem extends StockItem {
 	private int $bagOunce;
 	private boolean $baked;
 	private String $newID;
 	
+	/**
+	 * @return $bagOunce var
+	 */
 	private int getBagOunce() {
 		return $bagOunce;
 	}
@@ -40,12 +46,23 @@ public class CrispsItem extends StockItem {
 		return $newID;
 	}
 	
+	/**
+	 * NoArg Contructor
+	 */
 	public CrispsItem () {
 		$baked = false;
 		$bagOunce = 0;
 		$newID = "";
 	}
 	
+	/**
+	 * Constructor with args
+	 * @param _brandName
+	 * @param _description
+	 * @param _price
+	 * @param _bagOunce
+	 * @param _baked
+	 */
 	public CrispsItem(String _brandName, String _description, Double _price, int _bagOunce, boolean
 			_baked) {
 		super(_brandName, _description, _price);

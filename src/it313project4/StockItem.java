@@ -15,72 +15,125 @@ public class StockItem {
 	private Double $price;
 	private int $quantity;
 	
+	/**
+	 * set's id to generic prefix
+	 */
 	public void set_id () {
 		this.$id= "SN";
 	}
 	
+	
+	/**
+	 * Did I need the setter?
+	 * @param _brandName
+	 */
 	private void setBrandName(String _brandName) {
 		this.$brandName = _brandName;
 	}
 	
+	/**
+ 	 * Did I need the setter?
+	 * @param _description
+	 */
 	private void setDescription(String _description) {
 		this.$description = _description;
 	}
 	
+	/**
+	 * Did I need the setter?
+	 * @param _price
+	 */
 	private void setPrice(Double _price) {
 		this.$price = _price;
 	}
 	
+	/**
+	 * @param _quantity
+	 */
 	private void setQuantity(int _quantity) {
 		this.$quantity = _quantity;
 	}
 	
 	
+	/**
+	 * getter for $id
+	 * @return $id
+	 */
 	public String get_id() {
 		return $id;
 	}
 	
+	/**
+	 * @return
+	 */
 	private String get_description() {
 		return $description;
 	}
 	
+	/**
+	 * @return
+	 */
 	private Double get_price() {
 		return $price;
 	}
 	
+	/**
+	 * @return
+	 */
 	private int get_quantity() {
 		return $quantity;
 	}
 	
 	
+	/**
+	 * @return
+	 */
 	public String get_brandName() {
 		return $brandName;
 	}
 	
+	/**
+	 * @return
+	 */
 	public int	known_quantity() {
 		return $quantity;
 	}
 	
+	/**
+	 *
+	 */
 	public void addByOne() {
 		$quantity++;
 	}
 	
+	/**
+	 *
+	 */
 	public void removeByOne () {
 		while ($quantity > 0 ) {
 			$quantity--;
 		}
 	}
 	
+	/**
+	 * @param newID
+	 */
 	public void set_newID(String newID) {
 		 this.$id = newID;
 	}
 	
+	/**
+	 * @return
+	 */
 	public String display () {
 		return "Item ID: " + $id +
 				" BrandName: " + $brandName +
 				" Quantity: " +	$quantity;
 	}
 	
+	/**
+	 * NoArg constructor.
+	 */
 	public StockItem() {
 		$id = "";
 		$quantity = 0;
@@ -91,6 +144,7 @@ public class StockItem {
 	
 	/**
 	 *
+	 * Constructor with Arg
 	 * @param _brandName
 	 * @param _description
 	 * @param _price
