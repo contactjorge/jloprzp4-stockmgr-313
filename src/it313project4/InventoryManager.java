@@ -76,6 +76,7 @@ public class InventoryManager {
 	
 	/**
 	 * This was meant to be the interface that kicks off the user guided menu
+	 * Works now - earlier version did not work
 	 */
 	public void firstInterface() {
 		int mgrOption = 0;
@@ -100,7 +101,7 @@ public class InventoryManager {
 			} else if (mgrOption == 4) {
 				displayAll();
 			} else if (mgrOption == 0) {
-				mgrInput.hasNext();
+				mgrInput.close();
 			}
 		} else{
 				System.out.println("\nInvalid number selection\nPlease try again\n");
@@ -109,7 +110,7 @@ public class InventoryManager {
 	
 	/**
 	 * If user selects to add items then this method adds the items
-	 * It stopped working as the app became more complex
+	 * Works now - earlier version did not work
 	 * Made this a method that manually adds 48 items when called.
 	 *
 	 */
@@ -155,7 +156,8 @@ public class InventoryManager {
 	 * User would be able to choose to remove items from stock
 	 * number of items would then be passed to a removeItem method.
 	 * this stopped working so I moved the algorithm into this method
-	 * hoping to fix. Was unable to fix.
+	 *
+	 * Works now - earlier version did not work
 	 */
 	private void removeStock () {
 		int selection = 0;
@@ -175,8 +177,6 @@ public class InventoryManager {
 		System.out.print("Press (0) to go back\n");
 		
 		int deleteIndex = 0;
-
-		
 		//Collect the users input
 		if( mgrInputItem.hasNextInt() ) {
 			deleteIndex = mgrInputItem.nextInt() - 1;
@@ -203,31 +203,43 @@ public class InventoryManager {
 		firstInterface();
 	}
 	
-	private void removeItem(int dIndex){
-	
-	}
-	
 	/**
 	 * Finds the stock. Was working but may have stopped as the application
 	 * grew more complex
+	 * Works now - earlier version did not work
 	 */
 	private void findStock() {
-		int selection = 0;
-		StockItem item = new StockItem();
+		Scanner mgrInputItem = new Scanner(System.in); //scanner to find item in inventory
 		
 		//Get the base collection to print out prompts
-		for (int i = 0; i < this.$baseCol.size(); i++) {
-			selection = i + 1;
-			System.out.println("Press (" + selection + ") for " + this.$baseCol.get(i).get_brandName() + "." );
-		}
+		System.out.println("Press (1) for Peanut M&M's");
+		System.out.println("Press (2) for Hershey's Almond");
+		System.out.println("Press (3) for Starburst");
+		System.out.println("Press (4) for Coke");
+		System.out.println("Press (5) for Diet Coke");
+		System.out.println("Press (6) for Sprite");
+		System.out.println("Press (7) for Lay's");
+		System.out.println("Press (8) for Baked Lay's");
+		System.out.println("Press (9) for Doritos");
 		System.out.print("Press (0) to go back\n");
-		if (item.known_quantity() > 0) {
-			System.out.println("\nYou've selected the following item: " + findItembyID(item).get_brandName() + ".");
-			System.out.println("===========================================");
-			System.out.print(findItembyID(item) + "\n");
+		
+		//Collect the users input
+		if (mgrInputItem.hasNextInt())
+		{
+			int findIndex = mgrInputItem.nextInt() - 1;
+			StockItem item = this.$col.get(findIndex);
+			//Find the item if quantity is greater than 0
+			if (item.known_quantity() > 0) {
+				System.out.println("\nYou've selected the following item: " + findItembyID(item).get_brandName() + ".");
+				System.out.println("===========================================");
+				System.out.print(findItembyID(item) + "\n");
+			} else {
+				System.out.print( "\nThere are no " + item.get_brandName() + " items in the inventory.\n" );
+			}
 		} else {
-			System.out.print( "\nThere are no " + item.get_brandName() + " items in the inventory.\n" );
+			System.out.println("\nInvalid number selection\nPlease try again\n");
 		}
+		firstInterface();
 	}
 	
 	/**
