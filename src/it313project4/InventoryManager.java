@@ -114,12 +114,40 @@ public class InventoryManager {
 	 *
 	 */
 	private void addStock () {
-		StockItem theItem = new StockItem();
-		for (int i=0; i < this.$baseCol.size(); i++) {
-			theItem = this.$col.get(i);
-			addItem(theItem, 48);
-		}
+		int selection = 0;
+		Scanner mgrInputAddItem = new Scanner(System.in); //scanner to determine Item to change
 		
+		//Get the base collection to print out prompts
+		
+		System.out.println("Press (1) for Peanut M&M's");
+		System.out.println("Press (2) for Hershey's Almond");
+		System.out.println("Press (3) for Starburst");
+		System.out.println("Press (4) for Coke");
+		System.out.println("Press (5) for Diet Coke");
+		System.out.println("Press (6) for Sprite");
+		System.out.println("Press (7) for Lay's");
+		System.out.println("Press (8) for Baked Lay's");
+		System.out.println("Press (9) for Doritos");
+		System.out.print("Press (0) to go back\n");
+		
+		int addIndex = 0;
+		//Collect the users input
+		if( mgrInputAddItem.hasNextInt() ) {
+			addIndex=mgrInputAddItem.nextInt() - 1;
+			StockItem item=this.$col.get(addIndex);
+			System.out.print("How many " + item.get_brandName() + "s would you like to add?\n");
+			int itemQty=0;
+			
+			if (mgrInputAddItem.hasNextInt()) {
+				itemQty=mgrInputAddItem.nextInt();
+				addItem(item, itemQty);
+				System.out.print(itemQty + " " + item.get_brandName() + "Added.\n");
+			} else {
+				System.out.print("Enter numbers only\n");
+			}
+		} else {
+			System.out.println("\nInvalid number selection\nPlease try again\n");
+		}
 		firstInterface();
 	}
 	
@@ -130,49 +158,53 @@ public class InventoryManager {
 	 * hoping to fix. Was unable to fix.
 	 */
 	private void removeStock () {
-		int itemQty = 0;
-		int deleteItem = 0;
 		int selection = 0;
-		StockItem item = new StockItem();
 		Scanner mgrInputItem = new Scanner(System.in); //scanner to determine Item to change
-		Scanner mgrInputQty = new Scanner(System.in);
 		
 		//Get the base collection to print out prompts
-		for (int i = 0; i < this.$baseCol.size(); i++) {
-			selection = i + 1;
-			System.out.println("Press (" + selection + ") for " + this.$baseCol.get(i).get_brandName() + "." );
-		}
+		
+		System.out.println("Press (1) for Peanut M&M's");
+		System.out.println("Press (2) for Hershey's Almond");
+		System.out.println("Press (3) for Starburst");
+		System.out.println("Press (4) for Coke");
+		System.out.println("Press (5) for Diet Coke");
+		System.out.println("Press (6) for Sprite");
+		System.out.println("Press (7) for Lay's");
+		System.out.println("Press (8) for Baked Lay's");
+		System.out.println("Press (9) for Doritos");
 		System.out.print("Press (0) to go back\n");
+		
+		int deleteIndex = 0;
+
 		
 		//Collect the users input
 		if( mgrInputItem.hasNextInt() ) {
-			deleteItem = mgrInputItem.nextInt();
-			System.out.println(deleteItem);
+			deleteIndex = mgrInputItem.nextInt() - 1;
+			StockItem item = this.$col.get(deleteIndex);
+			System.out.print("How many " + item.get_brandName() + "s would you like to remove?\n" );
+			int itemQty = 0;
+			if( mgrInputItem.hasNextInt() ) {
+				itemQty= mgrInputItem.nextInt();
+				if (item.known_quantity() > 0 ){
+					for (int c = 0; c < itemQty; c++){
+						item.removeByOne();
+					}
+					System.out.print(itemQty + " " + item.get_brandName() + "Removed.\n");
+				} else {
+					System.out.println("\nThere are no " + item.get_brandName() + " items in stock at this time.\n \n");
+				}
+			} else {
+				System.out.print("Enter numbers only\n");
+			}
+			System.out.println(item);
 		} else {
 			System.out.println("\nInvalid number selection\nPlease try again\n");
 		}
-		
-		int opt = deleteItem - 1;
-		item = this.$col.get(opt);
-		
-		System.out.print("How many " + item.get_brandName() + "s would you like to remove?\n" );
-		
-		if( mgrInputQty.hasNextInt() ) {
-			itemQty = mgrInputQty.nextInt();
-			if (item.known_quantity() > 0 ){
-				int i = 1;
-				while (i < itemQty){
-					item.removeByOne();
-					i++;
-				}
-				System.out.print(itemQty + " " + item.get_brandName() + "Removed.\n");
-			} else {
-				System.out.println("\nThere are no " + item.get_brandName() + " items in stock at this time.\n \n");
-			}
-		} else {
-			System.out.print("Enter numbers only\n");
-		}
 		firstInterface();
+	}
+	
+	private void removeItem(int dIndex){
+	
 	}
 	
 	/**
@@ -231,11 +263,11 @@ public class InventoryManager {
 		
 		StockItem selectItem = findItembyID(purchasedItem);
 		
-		System.out.print("Adding " + quantity + " " + selectItem.get_brandName() + ".\n");
+		System.out.print("Adding " + quantity + " " + purchasedItem.get_brandName() + ".\n");
 		int i = 0;
 		while (i < quantity ) {
 			selectItem.addByOne();
-			this.$col.add(selectItem);
+			this.$col.add(purchasedItem);
 			i++;
 		}
 	}

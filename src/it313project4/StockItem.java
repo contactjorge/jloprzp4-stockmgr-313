@@ -110,9 +110,7 @@ public class StockItem {
 	 *
 	 */
 	public void removeByOne () {
-		while ($quantity > 0 ) {
-			$quantity--;
-		}
+		$quantity--;
 	}
 	
 	/**
